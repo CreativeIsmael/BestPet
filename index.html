@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ProiectFinal</title>
+    <script
+      src="https://kit.fontawesome.com/d0a0da12c0.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="icon" type="image/x-icon" href="/images/favicon-32x32.png" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <style>
+      body {
+        background-color: #e0ffcd;
+        /*background-image: linear-gradient(
+          to bottom right,
+          rgba(243, 243, 19, 0.896),
+          rgb(255, 217, 0)
+        );*/
+      }
+      .testObjFit {
+        object-fit: none;
+      }
+      img {
+        width: 100%;
+        height: 100%;
+      }
+      /*.dropbtn {
+        background-color: #34db87;
+        color: rgb(224, 21, 21);
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+      }
+
+      .dropbtn:hover,
+      .dropbtn:focus {
+        background-color: #136aa4;
+      }
+
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }*/
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        overflow: auto;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+      }
+
+      .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
+
+      .dropdown a:hover {
+        background-color: #ddd;
+      }
+
+      .show {
+        display: block;
+      }
+
+      .navMenu {
+        background-color: #e94822;
+      }
+      .main {
+        background-color: rgb(248, 248, 248);
+      }
+      #pageFooter {
+        background-color: #a2c11c;
+      }
+      .menuBg {
+        /* background-color: blanchedalmond;*/
+      }
+      .iconita {
+        max-width: 64px;
+        max-height: 64px;
+      }
+      .dropdown-toggle::after {
+        /*REMOVE ARROW*/
+        content: none;
+      }
+      .close {
+        width: 15px;
+        height: 15px;
+      }
+      .closedCart {
+        background-color: cornsilk;
+        width: 600px;
+        height: 100vh;
+        position: absolute;
+        top: 0;
+
+        z-index: -1;
+      }
+      .openCart {
+        z-index: 1;
+        right: 0;
+      }
+    </style>
+    <div class="container-xl main gx-0">
+      <!------------------- SEARCH + CART -------------------->
+      <div class="row py-3">
+        <div class="col-3">
+          <button class="btn m-2">
+            <a class="navbar-brand text-success fw-bold" href="index.html"
+              >BEST PET</a
+            >
+          </button>
+        </div>
+        <!-------------------- THE SEARCH -------------------->
+        <div class="col-6 d-flex justify-content-center">
+          <nav class="navbar navbar-light bg-light">
+            <form class="d-flex">
+              <input
+                class="form-control mr-sm-2"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+              />
+              <button
+                class="btn btn-outline-success my-2 my-sm-0"
+                type="submit"
+              >
+                Search
+              </button>
+            </form>
+          </nav>
+        </div>
+        <!------------------END of THE SEARCH ------------------>
+        <div class="col-3 d-flex justify-content-end">
+          <button class="btn btn-outline-secondary m-2" onclick="cartToggle()">
+            Cos(0)
+          </button>
+          <hr />
+
+          <!--------------------- The CART ------------------>
+          <section
+            id="cartCard"
+            class="border border-secondary rounded position-absolute closedCart"
+            style="background-color: cornsilk; width: 30vw; height: 60vh"
+          >
+            <div class="container h-100 py-3">
+              <div
+                class="row d-flex justify-content-center align-items-center h-100 overflow-auto"
+              >
+                <div>
+                  <button class="btn" onclick="closeCart()">
+                    <img class="close" src="images/close.png" alt="Closing x" />
+                  </button>
+                </div>
+                <div class="col-11">
+                  <div
+                    class="d-flex justify-content-between align-items-center mb-4"
+                  >
+                    <h3 class="fw-normal mb-0 text-black">
+                      Cos de cumparaturi
+                    </h3>
+                  </div>
+
+                  <div class="card rounded-3 mb-4">
+                    <div class="card-body p-2">
+                      <div
+                        class="row d-flex justify-content-between align-items-center"
+                      >
+                        <div class="col-md-2 col-lg-2 col-xl-2">
+                          <img
+                            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
+                            class="img-fluid rounded-3"
+                            alt="Cotton T-shirt"
+                          />
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-xl-3">
+                          <p class="lead fw-normal mb-2">Basic T-shirt</p>
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                          <button
+                            class="btn btn-link px-2"
+                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                          >
+                            <i class="fas fa-minus"></i>
+                          </button>
+
+                          <input
+                            id="form1"
+                            min="0"
+                            name="quantity"
+                            value="2"
+                            type="number"
+                            class="form-control form-control-sm px-2"
+                          />
+
+                          <button
+                            class="btn btn-link"
+                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                          >
+                            <i class="fas fa-plus"></i>
+                          </button>
+                        </div>
+                        <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                          <h6 class="mb-0">$499.00</h6>
+                        </div>
+                        <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                          <a href="#!" class="text-danger"
+                            ><i class="fas fa-trash fa-lg"></i
+                          ></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="card rounded-3 mb-4">
+                    <div class="card-body p-2">
+                      <div
+                        class="row d-flex justify-content-between align-items-center"
+                      >
+                        <div class="col-md-2 col-lg-2 col-xl-2">
+                          <img
+                            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
+                            class="img-fluid rounded-3"
+                            alt="Cotton T-shirt"
+                          />
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-xl-3">
+                          <p class="lead fw-normal mb-2">Basic T-shirt</p>
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                          <button
+                            class="btn btn-link px-2"
+                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                          >
+                            <i class="fas fa-minus"></i>
+                          </button>
+
+                          <input
+                            id="form1"
+                            min="0"
+                            name="quantity"
+                            value="2"
+                            type="number"
+                            class="form-control form-control-sm"
+                          />
+
+                          <button
+                            class="btn btn-link px-2"
+                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                          >
+                            <i class="fas fa-plus"></i>
+                          </button>
+                        </div>
+                        <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                          <h6 class="mb-0">$499.00</h6>
+                        </div>
+                        <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                          <a href="#!" class="text-danger"
+                            ><i class="fas fa-trash fa-lg"></i
+                          ></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="card rounded-3 mb-4">
+                    <div class="card-body p-2">
+                      <div
+                        class="row d-flex justify-content-between align-items-center"
+                      >
+                        <div class="col-md-2 col-lg-2 col-xl-2">
+                          <img
+                            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
+                            class="img-fluid rounded-3"
+                            alt="Cotton T-shirt"
+                          />
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-xl-3">
+                          <p class="lead fw-normal mb-2">Basic T-shirt</p>
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                          <button
+                            class="btn btn-link px-2"
+                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                          >
+                            <i class="fas fa-minus"></i>
+                          </button>
+
+                          <input
+                            id="form1"
+                            min="0"
+                            name="quantity"
+                            value="2"
+                            type="number"
+                            class="form-control form-control-sm"
+                          />
+
+                          <button
+                            class="btn btn-link px-2"
+                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                          >
+                            <i class="fas fa-plus"></i>
+                          </button>
+                        </div>
+                        <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                          <h6 class="mb-0">$499.00</h6>
+                        </div>
+                        <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                          <a href="#!" class="text-danger"
+                            ><i class="fas fa-trash fa-lg"></i
+                          ></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="card d-flex align-self-end">
+                    <div class="card-body">
+                      <button
+                        type="button"
+                        class="btn btn-warning btn-block btn-md"
+                      >
+                        Proceed to Pay
+                      </button>
+                    </div>
+                    <div class="p-3 cart-total align-self-end bg-primary">
+                      <strong class="cart-total-title">Total</strong>
+                      <span class="cart-total-price">0.00</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-------------- The END of the CART ----------------->
+        </div>
+      </div>
+      <!--------------- The END 0f SEARCH + CART---------------->
+      <hr class="my-4" />
+      <!------------------------ The MENU --------------------->
+      <div class="container menuBg">
+        <div class="d-flex justify-content-center w-50 mx-auto">
+          <div class="m-4 col-1">
+            <div class="dropdown">
+              <a
+                href="https://google.com"
+                class="dropdown-toggle text-decoration-none text-dark h4"
+                data-bs-toggle="dropdown"
+                >Caini</a
+              >
+              <div class="dropdown-menu">
+                <a href="indexCainiHrana.html" class="dropdown-item"
+                  >Hrana umeda/uscata caini</a
+                >
+                <a href="indexCainiRecompense.html" class="dropdown-item"
+                  >Recompense caini</a
+                >
+                <a href="indexCainiIngrijire.html" class="dropdown-item"
+                  >Ingrijire caini</a
+                >
+                <a href="indexCainiAccesorii.html" class="dropdown-item"
+                  >Accesorii caini</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="m-4 col-1">
+            <div class="dropdown">
+              <a
+                href="#"
+                class="dropdown-toggle text-dark text-decoration-none h4"
+                data-bs-toggle="dropdown"
+                >Pisici</a
+              >
+              <div class="dropdown-menu">
+                <a href="indexPisiciHrana.html" class="dropdown-item"
+                  >Hrana umeda/uscata pisici</a
+                >
+                <a href="indexPisiciRecompense.html" class="dropdown-item"
+                  >Recompense pisici</a
+                >
+                <a href="indexPisiciIngrijire.html" class="dropdown-item"
+                  >Ingrijire pisici</a
+                >
+                <a href="indexPisiciAccesorii.html" class="dropdown-item"
+                  >Accesorii pisici</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="m-4 col-1">
+            <div class="dropdown">
+              <a
+                href="#"
+                class="dropdown-toggle text-dark text-decoration-none h4"
+                data-bs-toggle="dropdown"
+                >Pesti</a
+              >
+              <div class="dropdown-menu">
+                <a href="indexPestiHrana.html" class="dropdown-item"
+                  >Hrana pesti</a
+                >
+                <a href="indexPestiAcvarii.html" class="dropdown-item"
+                  >Acvarii</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="m-4 col-1">
+            <div class="dropdown">
+              <a
+                href="#"
+                class="dropdown-toggle text-dark text-decoration-none h4"
+                data-bs-toggle="dropdown"
+                >Pasari</a
+              >
+              <div class="dropdown-menu">
+                <a href="indexPasariHrana.html" class="dropdown-item"
+                  >Hrana pasari</a
+                >
+                <a href="indexPasariAltele.html" class="dropdown-item"
+                  >Altele</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="m-4 col-1">
+            <div class="dropdown">
+              <a
+                href="#"
+                class="dropdown-toggle text-dark text-decoration-none h4"
+                data-bs-toggle="dropdown"
+                >Altele</a
+              >
+              <div class="dropdown-menu">
+                <a href="#" class="dropdown-item">Action</a>
+                <a href="#" class="dropdown-item">Another action</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!------------------ The END of the MENU ----------------->
+      <hr class="my-4" />
+      <!----------- TRANSPORT,LIVRARE,RETUR,SUPORT ------------>
+      <div class="container">
+        <div class="row text-center">
+          <div class="col-3">
+            <span>
+              <img class="iconita" src="images/gratuit.png" alt=""
+            /></span>
+
+            <h4>TRANSPORT GRATUIT</h4>
+            <p>La comenzile peste 249 lei</p>
+          </div>
+          <div class="col-3">
+            <span><img class="iconita" src="images/rapid.png" alt="" /></span>
+            <h4>LIVRARE RAPIDA</h4>
+            <p>In toata tara</p>
+          </div>
+          <div class="col-3">
+            <span><img class="iconita" src="images/retur.png" alt="" /></span>
+            <h4>RETUR GARANTAT</h4>
+            <p>Poti returna produsele in termen de 14 zile</p>
+          </div>
+          <div class="col-3">
+            <span><img class="iconita" src="images/telefon.png" alt="" /></span>
+            <h4>SUPORT TELEFONIC</h4>
+            <p>Comanda rapid prin telefon la 0720999111</p>
+          </div>
+        </div>
+      </div>
+      <!-------------- TRANSPORT,LIVRARE,RETUR,SUPORT-END ------------>
+      <hr class="my-4" />
+
+      <div class="row mt-2 mx-3 my-5 justify-content-center">
+        <div class="col-5">
+          <img class="testObjFit" src="images/dogResizedNoText.png" alt="" />
+        </div>
+        <div class="col-4">
+          <img class="testObjFit" src="images/catResizedNoText.png" alt="" />
+        </div>
+        <div class="col-3 align-content-around">
+          <div class="col-12 text-center pt-2 pb-2">
+            <img class="testObjFit" src="images/fishResizedNoText.png" alt="" />
+          </div>
+          <div class="col-12 text-center pt-3">
+            <img class="testObjFit" src="images/birdsResizedNoText.png" />
+          </div>
+        </div>
+      </div>
+
+      <!-------------------------- FOOTER ---------------------->
+
+      <div id="pageFooter" class="container-fluid py-4">
+        <div class="row gy-4">
+          <div class="col-lg-4 col-md-6">
+            <h5 class="h1 text-white">BestPet</h5>
+            <p class="small text-muted">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+              eiusmod tempor incididunt.
+            </p>
+            <p class="small text-muted mb-0">
+              &copy; Copyrights. All rights reserved.
+              <a class="text-primary" href="#">Bootstrapious.com</a>
+            </p>
+          </div>
+          <div class="col-lg-2 col-md-6">
+            <h5 class="text-white mb-3">Quick links</h5>
+            <ul class="list-unstyled text-muted">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Get started</a></li>
+              <li><a href="#">FAQ</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-2 col-md-6">
+            <h5 class="text-white mb-3">Quick links</h5>
+            <ul class="list-unstyled text-muted">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Get started</a></li>
+              <li><a href="#">FAQ</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <h5 class="text-white mb-3">Newsletter</h5>
+            <p class="small text-muted">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+              eiusmod tempor incididunt.
+            </p>
+            <form action="#">
+              <div class="input-group mb-3">
+                <input
+                  class="form-control"
+                  type="text"
+                  placeholder="Recipient's username"
+                  aria-label="Recipient's username"
+                  aria-describedby="button-addon2"
+                />
+                <button
+                  class="btn btn-primary"
+                  id="button-addon2"
+                  type="button"
+                >
+                  <i class="fas fa-paper-plane"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!------------------------- FOOTER END ------------------->
+    </div>
+
+    <script>
+      function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+      }
+
+      // Close the dropdown if the user clicks outside of it
+      window.onclick = function (event) {
+        if (!event.target.matches(".dropbtn")) {
+          var dropdowns = document.getElementsByClassName("dropdown-content");
+          var i;
+          for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains("show")) {
+              openDropdown.classList.remove("show");
+            }
+          }
+        }
+      };
+
+      function cartToggle() {
+        document.getElementById("cartCard").classList.add("openCart");
+      }
+      function closeCart() {
+        document.getElementById("cartCard").classList.remove("openCart");
+      }
+    </script>
+  </body>
+</html>
