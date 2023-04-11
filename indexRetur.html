@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ProiectFinal</title>
+
+    <script
+      src="https://kit.fontawesome.com/d0a0da12c0.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="icon" type="image/x-icon" href="/images/favicon-32x32.png" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <style>
+      body {
+        background-color: white;
+        /*background-image: linear-gradient(
+            to bottom right,
+            rgba(243, 243, 19, 0.896),
+            rgb(255, 217, 0)
+          );*/
+      }
+
+      /*.dropbtn {
+          background-color: #34db87;
+          color: rgb(224, 21, 21);
+          padding: 16px;
+          font-size: 16px;
+          border: none;
+          cursor: pointer;
+        }
+
+        .dropbtn:hover,
+        .dropbtn:focus {
+          background-color: #136aa4;
+        }
+
+        .dropdown {
+          position: relative;
+          display: inline-block;
+        }*/
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        overflow: auto;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+      }
+
+      .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
+
+      .dropdown a:hover {
+        background-color: #ddd;
+      }
+
+      .main {
+        background-color: rgb(248, 248, 248);
+      }
+
+      .dropdown-toggle::after {
+        /*REMOVE ARROW*/
+        content: none;
+      }
+      img {
+        width: 100%;
+        height: 100%;
+      }
+      /*--------------SEARCH style START-------------*/
+      .searchResults {
+        position: absolute;
+        top: 55px;
+        left: 0;
+        z-index: 2;
+        display: none;
+        overflow-y: scroll;
+        border: #e94822 1px solid;
+        margin: auto;
+        height: 20vh;
+        width: 90%;
+        background-color: rgb(248, 248, 248);
+      }
+      .searchResults::-webkit-scrollbar {
+        display: none;
+      }
+      .listItem:hover {
+        background-color: white;
+        border-bottom: #ddd solid 1px;
+      }
+      #searchInput {
+        border: solid 1px rgb(181, 181, 181);
+        height: 40px;
+        width: 65%;
+      }
+      #searchInput:focus {
+        outline-color: rgb(181, 181, 200);
+      }
+
+      /*--------------SEARCH style END-------------*/
+
+      /*--------------CART style START-------------*/
+      .closedCart {
+        background-color: rgb(248, 248, 248);
+        width: 600px;
+        height: 100vh;
+        position: absolute;
+        top: 0;
+
+        z-index: -1;
+      }
+      .openCart {
+        z-index: 2;
+        right: 0;
+      }
+      .close {
+        width: 15px;
+        height: 15px;
+      }
+      .show {
+        display: block;
+      }
+      .cart-quantity-input {
+        height: 34px;
+        width: 50px;
+        border-radius: 5px;
+        border: 1px solid #56ccf2;
+        background-color: #eee;
+        color: #333;
+        padding: 0;
+        text-align: center;
+        font-size: 1.2em;
+        margin-right: 25px;
+      }
+      #cartCard {
+        position: fixed;
+        right: 0;
+        left: 0;
+        z-index: 2;
+        display: none;
+        height: 90vh;
+      }
+      .cartBody {
+        width: 60%;
+        height: 85%;
+        background-color: rgb(248, 248, 248);
+        position: relative;
+        overflow-y: scroll;
+        overflow-x: hidden;
+      }
+
+      .cartBttns {
+        position: absolute;
+        bottom: 0;
+        height: 15%;
+        width: 100%;
+        background-color: rgb(248, 248, 248);
+      }
+      @media screen and (max-width: 960px) {
+        .cartBody {
+          width: 80%;
+        }
+      }
+      @media screen and (max-width: 768px) {
+        .cartBody {
+          width: 100%;
+        }
+      }
+      /*--------------CART style END-------------*/ /*--------------Transport,
+        livrare,
+        retur..style START------------*/
+      .iconita {
+        max-width: 64px;
+        max-height: 64px;
+      }
+
+      /*--------------Transport,livrare,retur..style END------------*/
+
+      /*--------------CAROUSEL style START-------------*/
+
+      @media screen and (max-width: 768px) {
+        .carouselCard:not(:first-child) {
+          display: none;
+        }
+        .card-group {
+          max-width: 60%;
+
+          margin: auto;
+        }
+      }
+      /*--------------CAROUSEL style START-------------*/
+
+      /*--------------MAIN images style START-------------*/
+      .testObjFit:hover {
+        opacity: 0.7;
+        transition: 0.5s ease-in-out;
+      }
+      .gridContainer {
+        display: grid;
+        gap: 10px;
+      }
+      .gridCol1,
+      .gridCol2 {
+        grid-row: 1/3;
+      }
+
+      .gridCol3 {
+        grid-row: 1/2;
+        grid-column: 3/4;
+      }
+      .gridCol3 {
+        grid-row: 2/3;
+        grid-column: 3/4;
+      }
+      @media screen and (max-width: 768px) {
+        .gridContainer {
+          display: grid;
+          gap: 5px;
+        }
+        .gridCol1 {
+          grid-row: 1/3;
+          grid-column: 1/2;
+        }
+        .gridCol2 {
+          grid-row: 1/3;
+          grid-column: 2/3;
+        }
+
+        .gridCol3 {
+          grid-row: 3/4;
+          grid-column: 1/2;
+        }
+        .gridCol3 {
+          grid-row: 3/4;
+          grid-column: 2/3;
+        }
+      }
+
+      /*--------------MAIN images style END-------------*/
+      /*--------------CONTACT images style START------------*/
+      .contactImg {
+        max-width: 16px;
+        max-height: 16px;
+      }
+      /*--------------FOOTER style START------------*/
+      #pageFooter {
+        background-color: #a2c11c;
+      }
+    </style>
+    <div class="container-xl main gx-0" onclick="hideResults()">
+      <!------------------- SEARCH + CART -------------------->
+      <div class="row py-3">
+        <div class="col-3">
+          <button class="btn m-2">
+            <a class="navbar-brand text-success fw-bold" href="index.html"
+              >BEST PET</a
+            >
+          </button>
+        </div>
+        <!-------------------- THE SEARCH -------------------->
+        <div
+          class="col-6 d-flex justify-content-center align-items-end"
+          style="position: relative"
+        >
+          <input
+            id="searchInput"
+            class="input rounded"
+            type="text"
+            placeholder=" Search"
+            aria-label="Search"
+            autocomplete="off"
+            onkeydown="loadData()"
+            onkeyup="search()"
+          />
+          <span class="p-1 px-2 text-secondary"
+            ><img src="images/search.png"
+          /></span>
+          <div
+            id="theList"
+            class="searchResults border border-1 rounded"
+            onmouseleave="hideResultsEmpty()"
+          ></div>
+        </div>
+        <!------------------END of THE SEARCH ------------------>
+        <div class="col-3 d-flex justify-content-end">
+          <button
+            id="cartCount"
+            class="btn btn-outline-secondary m-2"
+            onclick="toggleCart()"
+          >
+            Cos(0)
+          </button>
+          <hr />
+
+          <!--------------------- The CART ------------------>
+          <div
+            id="cartCard"
+            class="container-xl"
+            style="background-color: rgba(0, 0, 0, 0.4)"
+          >
+            <div class="border border-primary m-auto cartBody mt-5 rounded">
+              <div class="row p-3">
+                <div class="col-8 pt-3">
+                  <p class="h4 p-1">Cos de cumparaturi</p>
+                </div>
+                <div class="col-4 d-flex justify-content-end">
+                  <button class="btn" onclick="toggleCart()">
+                    <svg
+                      height="20px"
+                      id="Layer_1"
+                      style="enable-background: new 0 0 512 512"
+                      version="1.1"
+                      viewBox="0 0 512 512"
+                      width="20px"
+                      xml:space="preserve"
+                      xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                      <path
+                        d="M443.6,387.1L312.4,255.4l131.5-130c5.4-5.4,5.4-14.2,0-19.6l-37.4-37.6c-2.6-2.6-6.1-4-9.8-4c-3.7,0-7.2,1.5-9.8,4  L256,197.8L124.9,68.3c-2.6-2.6-6.1-4-9.8-4c-3.7,0-7.2,1.5-9.8,4L68,105.9c-5.4,5.4-5.4,14.2,0,19.6l131.5,130L68.4,387.1  c-2.6,2.6-4.1,6.1-4.1,9.8c0,3.7,1.4,7.2,4.1,9.8l37.4,37.6c2.7,2.7,6.2,4.1,9.8,4.1c3.5,0,7.1-1.3,9.8-4.1L256,313.1l130.7,131.1  c2.7,2.7,6.2,4.1,9.8,4.1c3.5,0,7.1-1.3,9.8-4.1l37.4-37.6c2.6-2.6,4.1-6.1,4.1-9.8C447.7,393.2,446.2,389.7,443.6,387.1z"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <!-------------- The cart CONTENT ----------------->
+              <div id="cartContent">
+                <div class="row mx-0 my-3 pb-1 text-center border-bottom">
+                  <div class="col-5">Product</div>
+
+                  <div class="col-2">Price</div>
+                  <div class="col-1">Qty</div>
+                  <div class="col-2">Total</div>
+                  <div class="col-2">Action</div>
+                </div>
+              </div>
+              <!-------------- The cart CONTENT-END ----------------->
+              <!-------------- The cart TOTAL  ----------------->
+              <div class="d-flex justify-content-end">
+                <span id="total" class="p-3 me-3">Total: 0 lei</span>
+              </div>
+              <!-------------- The cart TOTAL END ----------------->
+              <div id="cartBtn1">
+                <button class="btn btn-success" onclick="toggleCart()">
+                  Continua
+                </button>
+              </div>
+              <div id="cartBtn2">
+                <button
+                  class="btn btn-secondary"
+                  onclick="cumpara(); deleteLocalStorage()"
+                >
+                  Cumpara
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-------------- The END of the CART ----------------->
+        </div>
+      </div>
+      <!--------------- The END 0f SEARCH + CART---------------->
+      <hr class="my-3" />
+      <!------------------------ The MENU --------------------->
+      <div class="container menuBg">
+        <div class="d-flex justify-content-center w-50 mx-auto">
+          <div class="m-4 col-1">
+            <div class="dropdown">
+              <a
+                href="https://google.com"
+                class="dropdown-toggle text-decoration-none text-dark h4"
+                data-bs-toggle="dropdown"
+                >Caini</a
+              >
+              <div class="dropdown-menu">
+                <a href="indexCainiHrana.html" class="dropdown-item"
+                  >Hrana umeda/uscata caini</a
+                >
+                <a href="indexCainiRecompense.html" class="dropdown-item"
+                  >Recompense caini</a
+                >
+                <a href="indexCainiIngrijire.html" class="dropdown-item"
+                  >Ingrijire caini</a
+                >
+                <a href="indexCainiAccesorii.html" class="dropdown-item"
+                  >Accesorii caini</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="m-4 col-1">
+            <div class="dropdown">
+              <a
+                href="#"
+                class="dropdown-toggle text-dark text-decoration-none h4"
+                data-bs-toggle="dropdown"
+                >Pisici</a
+              >
+              <div class="dropdown-menu">
+                <a href="indexPisiciHrana.html" class="dropdown-item"
+                  >Hrana umeda/uscata pisici</a
+                >
+                <a href="indexPisiciRecompense.html" class="dropdown-item"
+                  >Recompense pisici</a
+                >
+                <a href="indexPisiciIngrijire.html" class="dropdown-item"
+                  >Ingrijire pisici</a
+                >
+                <a href="indexPisiciAccesorii.html" class="dropdown-item"
+                  >Accesorii pisici</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="m-4 col-1">
+            <div class="dropdown">
+              <a
+                href="#"
+                class="dropdown-toggle text-dark text-decoration-none h4"
+                data-bs-toggle="dropdown"
+                >Pesti</a
+              >
+              <div class="dropdown-menu">
+                <a href="indexPestiHrana.html" class="dropdown-item"
+                  >Hrana pesti</a
+                >
+                <a href="indexPestiAcvarii.html" class="dropdown-item"
+                  >Acvarii</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="m-4 col-1">
+            <div class="dropdown">
+              <a
+                href="#"
+                class="dropdown-toggle text-dark text-decoration-none h4"
+                data-bs-toggle="dropdown"
+                >Pasari</a
+              >
+              <div class="dropdown-menu">
+                <a href="indexPasariHrana.html" class="dropdown-item"
+                  >Hrana pasari</a
+                >
+                <a href="indexPasariAltele.html" class="dropdown-item"
+                  >Altele</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="m-4 col-1">
+            <div class="dropdown">
+              <a
+                href="#"
+                class="dropdown-toggle text-dark text-decoration-none h4"
+                data-bs-toggle="dropdown"
+                >Altele</a
+              >
+              <div class="dropdown-menu">
+                <a href="#" class="dropdown-item">Action</a>
+                <a href="#" class="dropdown-item">Another action</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!------------------ The END of the MENU ----------------->
+      <hr class="my-3" />
+
+      <h2 class="text-center p-3 fw-bold">Politica retur</h2>
+
+      <hr class="my-3" />
+      <div class="p-3">
+        In conformitate cu legislatia aplicabila in materie (O.U.G. nr.
+        34/2014), orice cumparator, persoana fizica, are dreptul de a se retrage
+        din contractual de achizitionare a produselor de pe site-ul megapet.ro,
+        in termen de 14 zile calendaristice, fara a fi nevoit sa isi justifice
+        decizia, cu respectarea urmatoarei politici de retur.<br /><br />Perioada
+        de retragere va expira la 14 zile dupa:<br /><br />-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        data livrarii, adica data la care dvs. sau o parte terta (alta decat
+        transportatorul) indicata de dvs., intrati in posesia fizica a
+        produsului; sau<br /><br />-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        in cazul mai multor produse care fac parte dintr-o singura comanda si
+        livrate separat: (i) ultima zi in care dvs., sau o parte terta (alta
+        decat transportatorul) indicata de dumneavoastra, intrati in posesia
+        fizica a ultimului produs, sau (ii) daca este cazul, data la care va
+        anuntam ca nu mai putem livra produsele comandate; sau<br /><br />-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        in cazul unei comenzi referitor la livrarea unui produs constand din mai
+        multe loturi sau piese: (i) data la care dvs. sau o parte terta (alta
+        decat transportatorul) indicata de dumneavoastra, intrati in posesia
+        fizica a ultimului lot sau ultimei piese, sau (ii) data la care va
+        anuntam ca nu putem livra loturi sau piese suplimentare.<br /><br />Dreptul
+        de retragere din contract nu se aplica in cazul PFA-urilor si nici in
+        cazul persoanelor juridice.<br /><br /><strong
+          >Produse ce nu pot fi returnate<br /><br /></strong
+        >Urmatoarele produse sunt exceptate de la dreptul de retragere:<br /><br />•&nbsp;&nbsp;
+        &nbsp;produsele alimentare comercializate prin intermediul Site-ului,
+        care sunt susceptibile a se deteriora sau a expira rapid sau nu pot fi
+        returnate din motive de protectie a sanatatii sau din motive de igiena
+        sau care au fost desigilate de consummator;<br /><br />•&nbsp;&nbsp;
+        &nbsp;produse care prezinta urme de uzura sau consum, produse
+        personalizate conform cerintelor clientului, produse care prezinta
+        modificari fizice, lovituri, ciobiri, zgarieturi, socuri, produse fara
+        ambalajul original sau cu ambalajul deteriorat.<br /><br /><strong
+          >Exercitarea dreptului de retragere<br /><br /></strong
+        >Pentru a va exercita dreptul de retragere trebuie sa ne informati cu
+        privire la decizia dumneavoastra utilizand formularul de retragere de
+        mai jos.<br /><br />&nbsp;Formularul standard de retragere se
+        completeaza si se transmite la adresa de e-mail contact@megapet.ro. Dupa
+        analizarea optiunii de retragere, va vom transmite pe e-mail
+        solutionarea cererii de retragere. Orice cerere de retragere primita va
+        fi analizata si solutionata conform preverilor legale aplicabile in
+        functie de tipologia produselor ce fac obiectul acesteia.<br /><br />Daca
+        cererea de retragere este confirmata de catre noi, vom rambursa suma
+        aferenta produselor ce face obeictul cererii de retragere pe care am
+        primit-o de la dvs., cu exceptia costurilor de livrare, nu mai tarziu de
+        30 zile calendaristice de la data la care suntem informati cu privire la
+        decizia dumneavoastra de a va retrage din prezentul contract. Plata
+        contravalorii produselor se va face prin banca in contul bancar
+        specificat de catre Cumparator.<br /><br />Ne rezervam dreptul de a
+        amana rambursarea contravalorii produselor pana la data la care primim
+        inapoi produsele sau pana la momentul la care ne-ati furnizat dovada ca
+        ati trimis inapoi produsele, fiind valabila data cea mai apropiata.<br /><br />Produsul
+        returnat trebuie sa fie in aceeasi stare in care a fost livrat
+        (nederiorat si cu documentele care l-au insotit - factura, certificate
+        de garantie etc.).<br /><span style="text-decoration: underline"
+          ><strong><br />Important</strong></span
+        >: Costurile aferente returnarii produsului/produselor ce fac obiectul
+        cererii de retragere vor fi suportate integral de catre dvs. Prin
+        urmare, nu se va returna contravaloarea transportului platit pentru a
+        receptiona produsele si nici contravaloarea transportului pentru
+        trimiterea lor inapoi catre noi.<br /><br />In cazul in care doriti
+        informatii suplimentare sau aveti neclaritati privind politica de retur,
+        va rugam sa ne contactati pe adresa de e-mail sau la numarul de telefon
+        afisat pe site.<br /><br />
+        <div style="text-align: center"><strong>Formular de retur</strong></div>
+        <br />
+        <div style="text-align: center">
+          (formularul va trebui trimis la adresa contact@megapet.ro)
+        </div>
+        <br />Nume si prenume:<br />Numar de telefon:<br />Adresa de e-mail:<br />Adresa
+        completa:<br />Numarul comenzii:<br />Numarul facturii:<br />Produsul/produsele
+        pe care doresti sa il/le returnezi (denumirea exacta a produsului, cod
+        produs, numar bucati):<br />Contul bancar (nume titular, CNP, cont IBAN,
+        Banca):<br />Motivul returului (optional):<br />Observatii suplimentare:
+      </div>
+
+      <!-------------------------- FOOTER ---------------------->
+
+      <div id="pageFooter" class="container-fluid py-5">
+        <div class="row gy-4">
+          <div class="col-lg-4 col-md-6">
+            <h5 class="h1 text-white">BestPet</h5>
+            <p class="small text-muted w-75">
+              BestPet iubește animalele de companie și de aceea își dorește să
+              fie primul pet shop online care să aducă acestora cea mai
+              delicioasă și calitativă hrană.
+            </p>
+            <p class="small text-muted mb-0">
+              &copy; Copyrights. All rights reserved.
+              <a class="text-primary" href="index.html">BestPet</a>
+            </p>
+          </div>
+          <div class="col-lg-2 col-md-6">
+            <h5 class="text-white mb-3">Quick links</h5>
+            <ul class="list-unstyled text-muted">
+              <li><a class="text-muted" href="index.html">Acasa</a></li>
+              <li><a class="text-muted" href="indexAbout.html">Despre</a></li>
+              <li>
+                <a class="text-muted" href="indexRetur.html">Politica retur</a>
+              </li>
+              <li>
+                <a class="text-muted" href="indexComanda.html">Cum comand</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-2 col-md-6">
+            <h5 class="text-white mb-3">Produsele noastre</h5>
+            <ul class="list-unstyled">
+              <li>
+                <a class="text-muted" href="indexImagineCaine.html"
+                  >Produse caini</a
+                >
+              </li>
+              <li>
+                <a class="text-muted" href="indexImaginePisica.html"
+                  >Produse pisici</a
+                >
+              </li>
+              <li>
+                <a class="text-muted" href="indexImaginePasare.html"
+                  >Produse pasari</a
+                >
+              </li>
+              <li>
+                <a class="text-muted" href="index.ImaginePeste.html"
+                  >Produse pesti</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <h5 class="text-white mb-3">Newsletter</h5>
+            <p class="small text-muted w-75">
+              Aboneaza-te la noi si vei fii intotdeauna primul care se bucura de
+              promotiile noastre!
+            </p>
+            <form action="#">
+              <div class="input-group mb-3">
+                <input
+                  class="form-control"
+                  type="text"
+                  placeholder=" Adresa de email"
+                  aria-label="Recipient's username"
+                  aria-describedby="button-addon2"
+                />
+                <button
+                  class="btn btn-primary"
+                  id="button-addon2"
+                  type="button"
+                >
+                  <i class="fas fa-paper-plane"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!------------------------- FOOTER END ------------------->
+    </div>
+
+    <script src="main.js">
+      function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+      }
+
+      // Close the dropdown if the user clicks outside of it
+      window.onclick = function (event) {
+        if (!event.target.matches(".dropbtn")) {
+          var dropdowns = document.getElementsByClassName("dropdown-content");
+          var i;
+          for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains("show")) {
+              openDropdown.classList.remove("show");
+            }
+          }
+        }
+      };
+    </script>
+  </body>
+</html>
