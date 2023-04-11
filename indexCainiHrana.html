@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>ProiectFinal</title>
+
     <link rel="icon" type="image/x-icon" href="/images/favicon-32x32.png" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
@@ -22,102 +23,379 @@
   </head>
   <body>
     <style>
-      .pret {
-        color: red;
-        font: 1.3rem bold;
+      body {
+        background-color: white;
+        /*background-image: linear-gradient(
+            to bottom right,
+            rgba(243, 243, 19, 0.896),
+            rgb(255, 217, 0)
+          );*/
+      }
+
+      /*.dropbtn {
+          background-color: #34db87;
+          color: rgb(224, 21, 21);
+          padding: 16px;
+          font-size: 16px;
+          border: none;
+          cursor: pointer;
+        }
+
+        .dropbtn:hover,
+        .dropbtn:focus {
+          background-color: #136aa4;
+        }
+
+        .dropdown {
+          position: relative;
+          display: inline-block;
+        }*/
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        overflow: auto;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+      }
+
+      .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
+
+      .dropdown a:hover {
+        background-color: #ddd;
+      }
+
+      .main {
+        background-color: rgb(248, 248, 248);
+      }
+
+      .dropdown-toggle::after {
+        /*REMOVE ARROW*/
+        content: none;
+      }
+      img {
+        width: 100%;
+        height: 100%;
+      }
+      /*--------------SEARCH style START-------------*/
+      .searchResults {
+        position: absolute;
+        top: 55px;
+        left: 0;
+        z-index: 2;
+        display: none;
+        overflow-y: scroll;
+        border: #e94822 1px solid;
+        margin: auto;
+        height: 20vh;
+        width: 90%;
+        background-color: rgb(248, 248, 248);
+      }
+      .searchResults::-webkit-scrollbar {
+        display: none;
+      }
+      .listItem:hover {
+        background-color: white;
+        border-bottom: #ddd solid 1px;
+      }
+      #searchInput {
+        border: solid 1px rgb(181, 181, 181);
+        height: 40px;
+        width: 65%;
+      }
+      #searchInput:focus {
+        outline-color: rgb(181, 181, 200);
+      }
+
+      /*--------------SEARCH style END-------------*/
+
+      /*--------------CART style START-------------*/
+      .closedCart {
+        background-color: rgb(248, 248, 248);
+        width: 600px;
+        height: 100vh;
+        position: absolute;
+        top: 0;
+
+        z-index: -1;
+      }
+      .openCart {
+        z-index: 2;
+        right: 0;
+      }
+      .close {
+        width: 15px;
+        height: 15px;
+      }
+      .show {
+        display: block;
+      }
+      .cart-quantity-input {
+        height: 34px;
+        width: 50px;
+        border-radius: 5px;
+        border: 1px solid #56ccf2;
+        background-color: #eee;
+        color: #333;
+        padding: 0;
+        text-align: center;
+        font-size: 1.2em;
+        margin-right: 25px;
+      }
+      #cartCard {
+        position: fixed;
+        right: 0;
+        left: 0;
+        z-index: 2;
+        display: none;
+        height: 90vh;
+      }
+      .cartBody {
+        width: 60%;
+        height: 85%;
+        background-color: rgb(248, 248, 248);
+        position: relative;
+        overflow-y: scroll;
+        overflow-x: hidden;
+      }
+
+      .cartBttns {
+        position: absolute;
+        bottom: 0;
+        height: 15%;
+        width: 100%;
+        background-color: rgb(248, 248, 248);
+      }
+      @media screen and (max-width: 960px) {
+        .cartBody {
+          width: 80%;
+        }
+      }
+      @media screen and (max-width: 768px) {
+        .cartBody {
+          width: 100%;
+        }
+      }
+      /*--------------CART style END-------------*/ /*--------------Transport,
+        livrare,
+        retur..style START------------*/
+      .iconita {
+        max-width: 64px;
+        max-height: 64px;
+      }
+
+      /*--------------Transport,livrare,retur..style END------------*/
+
+      /*--------------CAROUSEL style START-------------*/
+
+      @media screen and (max-width: 768px) {
+        .carouselCard:not(:first-child) {
+          display: none;
+        }
+        .card-group {
+          max-width: 60%;
+
+          margin: auto;
+        }
+      }
+      /*--------------CAROUSEL style START-------------*/
+
+      /*--------------MAIN images style START-------------*/
+      .testObjFit:hover {
+        opacity: 0.7;
+        transition: 0.5s ease-in-out;
+      }
+      .gridContainer {
+        display: grid;
+        gap: 10px;
+      }
+      .gridCol1,
+      .gridCol2 {
+        grid-row: 1/3;
+      }
+
+      .gridCol3 {
+        grid-row: 1/2;
+        grid-column: 3/4;
+      }
+      .gridCol3 {
+        grid-row: 2/3;
+        grid-column: 3/4;
+      }
+      @media screen and (max-width: 768px) {
+        .gridContainer {
+          display: grid;
+          gap: 5px;
+        }
+        .gridCol1 {
+          grid-row: 1/3;
+          grid-column: 1/2;
+        }
+        .gridCol2 {
+          grid-row: 1/3;
+          grid-column: 2/3;
+        }
+
+        .gridCol3 {
+          grid-row: 3/4;
+          grid-column: 1/2;
+        }
+        .gridCol3 {
+          grid-row: 3/4;
+          grid-column: 2/3;
+        }
+      }
+
+      /*--------------MAIN images style END-------------*/
+      /*--------------CONTACT images style START------------*/
+      .contactImg {
+        max-width: 16px;
+        max-height: 16px;
+      }
+      /*--------------FOOTER style START------------*/
+      #pageFooter {
+        background-color: #a2c11c;
       }
     </style>
-    <div class="container-xl">
-      <nav class="navbar navbar-expand-lg navbar-light navMenu">
-        <div class="container-fluid">
-          <a class="navbar-brand text-warning" href="index.html">Navbar</a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
+    <div class="container-xl main gx-0">
+      <!------------------- SEARCH + CART -------------------->
+      <div class="row py-3">
+        <div class="col-3">
+          <button class="btn m-2">
+            <a class="navbar-brand text-success fw-bold" href="index.html"
+              >BEST PET</a
+            >
           </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a
-                  class="nav-link active text-warning"
-                  aria-current="page"
-                  href="index.html"
-                  >Home</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-warning" href="#">Link</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a
-                  class="nav-link dropdown-toggle text-warning"
-                  href="#"
-                  id="navbarDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Dropdown
-                </a>
-                <ul
-                  class="dropdown-menu text-warning"
-                  aria-labelledby="navbarDropdown"
-                >
-                  <li>
-                    <a class="dropdown-item text-warning" href="#">Action</a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item text-warning" href="#"
-                      >Another action</a
-                    >
-                  </li>
-                  <li><hr class="dropdown-divider" /></li>
-                  <li>
-                    <a class="dropdown-item text-warning" href="#"
-                      >Something else here</a
-                    >
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link disabled"
-                  href="#"
-                  tabindex="-1"
-                  aria-disabled="true"
-                  >Disabled</a
-                >
-              </li>
-            </ul>
-            <form class="d-flex">
-              <input
-                class="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <button class="btn btn-outline-warning" type="submit">
-                Search
-              </button>
-            </form>
-          </div>
         </div>
-      </nav>
-      <hr />
+        <!-------------------- THE SEARCH -------------------->
+        <div
+          class="col-6 d-flex justify-content-center align-items-end"
+          style="position: relative"
+        >
+          <input
+            id="searchInput"
+            class="input rounded"
+            type="text"
+            placeholder=" Search"
+            aria-label="Search"
+            autocomplete="off"
+            onkeydown="loadData()"
+            onkeyup="search()"
+          />
+          <span class="p-1 px-2 text-secondary"
+            ><img src="images/search.png"
+          /></span>
+          <div
+            id="theList"
+            class="searchResults border border-1 rounded"
+            onmouseleave="hideResultsEmpty()"
+          ></div>
+        </div>
+        <!------------------END of THE SEARCH ------------------>
+        <div class="col-3 d-flex justify-content-end">
+          <button
+            id="cartCount"
+            class="btn btn-outline-secondary m-2"
+            onclick="toggleCart()"
+          >
+            Cos(0)
+          </button>
+          <hr />
+
+          <!--------------------- The CART ------------------>
+          <div id="cartCard" class="container-xl">
+            <div class="border border-muted m-auto cartBody mt-5 rounded">
+              <div class="row p-3">
+                <div class="col-8 pt-3">
+                  <p class="h4 p-1 fw-bold">Cos de cumparaturi</p>
+                </div>
+                <div class="col-4 d-flex justify-content-end">
+                  <button class="btn" onclick="toggleCart()">
+                    <svg
+                      height="20px"
+                      id="Layer_1"
+                      style="enable-background: new 0 0 512 512"
+                      version="1.1"
+                      viewBox="0 0 512 512"
+                      width="20px"
+                      xml:space="preserve"
+                      xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                      <path
+                        d="M443.6,387.1L312.4,255.4l131.5-130c5.4-5.4,5.4-14.2,0-19.6l-37.4-37.6c-2.6-2.6-6.1-4-9.8-4c-3.7,0-7.2,1.5-9.8,4  L256,197.8L124.9,68.3c-2.6-2.6-6.1-4-9.8-4c-3.7,0-7.2,1.5-9.8,4L68,105.9c-5.4,5.4-5.4,14.2,0,19.6l131.5,130L68.4,387.1  c-2.6,2.6-4.1,6.1-4.1,9.8c0,3.7,1.4,7.2,4.1,9.8l37.4,37.6c2.7,2.7,6.2,4.1,9.8,4.1c3.5,0,7.1-1.3,9.8-4.1L256,313.1l130.7,131.1  c2.7,2.7,6.2,4.1,9.8,4.1c3.5,0,7.1-1.3,9.8-4.1l37.4-37.6c2.6-2.6,4.1-6.1,4.1-9.8C447.7,393.2,446.2,389.7,443.6,387.1z"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <!-------------- The cart CONTENT ----------------->
+              <div id="cartContent">
+                <div
+                  class="row mx-0 my-3 pb-1 text-center border-bottom border border-muted"
+                >
+                  <div
+                    class="col-sm-3 col-md-4 col-5 fw-bold border-top border-muted py-2"
+                  >
+                    Product
+                  </div>
+
+                  <div class="col-2 fw-bold border-top border-muted py-2">
+                    Price
+                  </div>
+                  <div class="col-1 fw-bold border-top border-muted py-2">
+                    Qty
+                  </div>
+                  <div class="col-2 fw-bold border-top border-muted py-2">
+                    Total
+                  </div>
+                  <div class="col-2 fw-bold border-top border-muted py-2">
+                    Action
+                  </div>
+                </div>
+              </div>
+              <!-------------- The cart CONTENT-END ----------------->
+              <!-------------- The cart TOTAL  ----------------->
+              <div class="d-flex justify-content-end">
+                <span id="total" class="p-3 me-3 fw-bold">Total: 0 lei</span>
+              </div>
+              <div class="row mx-auto cartBttns border-top border-muted">
+                <div id="cartBtn1" class="col-6 text-center pt-3">
+                  <button class="btn btn-success" onclick="toggleCart()">
+                    Continua
+                  </button>
+                </div>
+                <div id="cartBtn2" class="col-6 text-center pt-3">
+                  <button
+                    class="btn btn-secondary"
+                    onclick="cumpara(); deleteLocalStorage()"
+                  >
+                    Cumpara
+                  </button>
+                </div>
+              </div>
+              <!-------------- The cart TOTAL END ----------------->
+            </div>
+          </div>
+          <!-------------- The END of the CART ----------------->
+        </div>
+      </div>
+      <!--------------- The END 0f SEARCH + CART---------------->
+      <hr class="my-3" />
+      <!------------------------ The MENU --------------------->
       <div class="container menuBg">
         <div class="d-flex justify-content-center w-50 mx-auto">
           <div class="m-4 col-1">
             <div class="dropdown">
               <a
                 href="https://google.com"
-                class="dropdown-toggle text-decoration-none text-dark"
+                class="dropdown-toggle text-decoration-none text-dark h4"
                 data-bs-toggle="dropdown"
                 >Caini</a
               >
@@ -141,7 +419,7 @@
             <div class="dropdown">
               <a
                 href="#"
-                class="dropdown-toggle text-dark"
+                class="dropdown-toggle text-dark text-decoration-none h4"
                 data-bs-toggle="dropdown"
                 >Pisici</a
               >
@@ -165,7 +443,7 @@
             <div class="dropdown">
               <a
                 href="#"
-                class="dropdown-toggle text-dark"
+                class="dropdown-toggle text-dark text-decoration-none h4"
                 data-bs-toggle="dropdown"
                 >Pesti</a
               >
@@ -183,7 +461,7 @@
             <div class="dropdown">
               <a
                 href="#"
-                class="dropdown-toggle text-dark"
+                class="dropdown-toggle text-dark text-decoration-none h4"
                 data-bs-toggle="dropdown"
                 >Pasari</a
               >
@@ -201,7 +479,7 @@
             <div class="dropdown">
               <a
                 href="#"
-                class="dropdown-toggle text-dark"
+                class="dropdown-toggle text-dark text-decoration-none h4"
                 data-bs-toggle="dropdown"
                 >Altele</a
               >
@@ -213,7 +491,9 @@
           </div>
         </div>
       </div>
-      <hr />
+      <!------------------ The END of the MENU ----------------->
+      <hr class="my-3" />
+      <!----------- TRANSPORT,LIVRARE,RETUR,SUPORT ------------>
       <div class="container">
         <div class="row text-center">
           <div class="col-3">
@@ -221,30 +501,30 @@
               <img class="iconita" src="images/gratuit.png" alt=""
             /></span>
 
-            <h3>TRANSPORT GRATUIT</h3>
+            <h4>TRANSPORT GRATUIT</h4>
             <p>La comenzile peste 249 lei</p>
           </div>
           <div class="col-3">
             <span><img class="iconita" src="images/rapid.png" alt="" /></span>
-            <h3>LIVRARE RAPIDA</h3>
+            <h4>LIVRARE RAPIDA</h4>
             <p>In toata tara</p>
           </div>
           <div class="col-3">
             <span><img class="iconita" src="images/retur.png" alt="" /></span>
-            <h3>RETUR GARANTAT</h3>
+            <h4>RETUR GARANTAT</h4>
             <p>Poti returna produsele in termen de 14 zile</p>
           </div>
           <div class="col-3">
             <span><img class="iconita" src="images/telefon.png" alt="" /></span>
-            <h3>SUPORT TELEFONIC</h3>
+            <h4>SUPORT TELEFONIC</h4>
             <p>Comanda rapid prin telefon la 0720999111</p>
           </div>
         </div>
       </div>
       <hr />
-      <h3 class="text-center py-3">Hrana Caini</h3>
+      <h2 class="text-center py-3 fw-bold">Hrana Caini</h2>
       <hr />
-      <div class="HRANA d-flex flex-wrap">
+      <div class="d-flex flex-wrap">
         <div class="card m-3" style="width: 18rem">
           <img
             class="card-img-top"
@@ -378,7 +658,91 @@
           </div>
         </div>
       </div>
-      <hr />
+
+      <!-------------------------- FOOTER ---------------------->
+
+      <div id="pageFooter" class="container-fluid py-5">
+        <div class="row gy-4">
+          <div class="col-lg-4 col-md-6">
+            <h5 class="h1 text-white">BestPet</h5>
+            <p class="small text-muted w-75">
+              BestPet iubește animalele de companie și de aceea își dorește să
+              fie primul pet shop online care să aducă acestora cea mai
+              delicioasă și calitativă hrană.
+            </p>
+            <p class="small text-muted mb-0">
+              &copy; Copyrights. All rights reserved.
+              <a class="text-primary" href="index.html">BestPet</a>
+            </p>
+          </div>
+          <div class="col-lg-2 col-md-6">
+            <h5 class="text-white mb-3">Quick links</h5>
+            <ul class="list-unstyled text-muted">
+              <li><a class="text-muted" href="index.html">Acasa</a></li>
+              <li><a class="text-muted" href="indexAbout.html">Despre</a></li>
+              <li>
+                <a class="text-muted" href="indexRetur.html">Politica retur</a>
+              </li>
+              <li>
+                <a class="text-muted" href="indexComanda.html">Cum comand</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-2 col-md-6">
+            <h5 class="text-white mb-3">Produsele noastre</h5>
+            <ul class="list-unstyled">
+              <li>
+                <a class="text-muted" href="indexImagineCaine.html"
+                  >Produse caini</a
+                >
+              </li>
+              <li>
+                <a class="text-muted" href="indexImaginePisica.html"
+                  >Produse pisici</a
+                >
+              </li>
+              <li>
+                <a class="text-muted" href="indexImaginePasare.html"
+                  >Produse pasari</a
+                >
+              </li>
+              <li>
+                <a class="text-muted" href="index.ImaginePeste.html"
+                  >Produse pesti</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <h5 class="text-white mb-3">Newsletter</h5>
+            <p class="small text-muted w-75">
+              Aboneaza-te la noi si vei fii intotdeauna primul care se bucura de
+              promotiile noastre!
+            </p>
+            <form action="#">
+              <div class="input-group mb-3">
+                <input
+                  class="form-control"
+                  type="text"
+                  placeholder=" Adresa de email"
+                  aria-label="Recipient's username"
+                  aria-describedby="button-addon2"
+                />
+                <button
+                  class="btn btn-primary"
+                  id="button-addon2"
+                  type="button"
+                >
+                  <i class="fas fa-paper-plane"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!------------------------- FOOTER END ------------------->
     </div>
+    <script src="main.js"></script>
   </body>
 </html>
