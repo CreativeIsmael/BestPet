@@ -7,7 +7,7 @@
       src="https://kit.fontawesome.com/d0a0da12c0.js"
       crossorigin="anonymous"
     ></script>
-    <link rel="icon" type="image/x-icon" href="/images/favicon-32x32.png" />
+
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -23,38 +23,41 @@
   <body>
     <style>
       body {
-        background-color: cornsilk;
+        background-color: white;
         /*background-image: linear-gradient(
-                to bottom right,
-                rgba(243, 243, 19, 0.896),
-                rgb(255, 217, 0)
-              );*/
+            to bottom right,
+            rgba(243, 243, 19, 0.896),
+            rgb(255, 217, 0)
+          );*/
       }
-      .testObjFit {
-        object-fit: none;
-      }
-      img {
-        width: 100%;
-        height: 100%;
-      }
+
       /*.dropbtn {
-              background-color: #34db87;
-              color: rgb(224, 21, 21);
-              padding: 16px;
-              font-size: 16px;
-              border: none;
-              cursor: pointer;
-            }
+          background-color: #34db87;
+          color: rgb(224, 21, 21);
+          padding: 16px;
+          font-size: 16px;
+          border: none;
+          cursor: pointer;
+        }
 
-            .dropbtn:hover,
-            .dropbtn:focus {
-              background-color: #136aa4;
-            }
+        .dropbtn:hover,
+        .dropbtn:focus {
+          background-color: #136aa4;
+        }
 
-            .dropdown {
-              position: relative;
-              display: inline-block;
-            }*/
+        .dropdown {
+          position: relative;
+          display: inline-block;
+        }*/
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        overflow: auto;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+      }
 
       .dropdown-content a {
         color: black;
@@ -67,66 +70,71 @@
         background-color: #ddd;
       }
 
-      .show {
-        display: block;
-      }
-
-      .navMenu {
-        background-color: #e94822;
-      }
       .main {
         background-color: rgb(248, 248, 248);
       }
-      #pageFooter {
-        background-color: #a2c11c;
-      }
 
-      .iconita {
-        max-width: 64px;
-        max-height: 64px;
-      }
       .dropdown-toggle::after {
         /*REMOVE ARROW*/
         content: none;
       }
-      #cartBG {
-        background-color: cornsilk;
-        position: fixed;
-        right: 0;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+      /*--------------SEARCH style START-------------*/
+      .searchResults {
+        position: absolute;
+        top: 55px;
         left: 0;
         z-index: 2;
         display: none;
-        height: 90vh;
+        overflow-y: scroll;
+        border: #e94822 1px solid;
+        margin: auto;
+        height: 20vh;
+        width: 90%;
+        background-color: rgb(248, 248, 248);
       }
-      .cartBody {
-        width: 60%;
-        height: 85%;
-        background-color: cornsilk;
-        position: relative;
-        overflow: scroll;
+      .searchResults::-webkit-scrollbar {
+        display: none;
       }
-      #cartContent {
-        position: relative;
-        overflow: scroll;
+      .listItem:hover {
+        background-color: white;
+        border-bottom: #ddd solid 1px;
       }
-      #cartBtn1 {
-        position: absolute;
-        bottom: 2rem;
-        left: 4rem;
+      #searchInput {
+        border: solid 1px rgb(181, 181, 181);
+        height: 40px;
+        width: 65%;
       }
-      #cartBtn2 {
-        position: absolute;
-        bottom: 2rem;
-        right: 4rem;
-      }
-
-      @media screen and (max-width: 768px) {
-        .carouselCard:not(:first-child) {
-          display: none;
-          max-height: 300px;
-        }
+      #searchInput:focus {
+        outline-color: rgb(181, 181, 200);
       }
 
+      /*--------------SEARCH style END-------------*/
+
+      /*--------------CART style START-------------*/
+      .closedCart {
+        background-color: rgb(248, 248, 248);
+        width: 600px;
+        height: 100vh;
+        position: absolute;
+        top: 0;
+
+        z-index: -1;
+      }
+      .openCart {
+        z-index: 2;
+        right: 0;
+      }
+      .close {
+        width: 15px;
+        height: 15px;
+      }
+      .show {
+        display: block;
+      }
       .cart-quantity-input {
         height: 34px;
         width: 50px;
@@ -139,53 +147,172 @@
         font-size: 1.2em;
         margin-right: 25px;
       }
+      #cartCard {
+        position: fixed;
+        right: 0;
+        left: 0;
+        z-index: 2;
+        display: none;
+        height: 90vh;
+      }
+      .cartBody {
+        width: 60%;
+        height: 85%;
+        background-color: rgb(248, 248, 248);
+        position: relative;
+        overflow-y: scroll;
+        overflow-x: hidden;
+      }
+
+      .cartBttns {
+        position: absolute;
+        bottom: 0;
+        height: 15%;
+        width: 100%;
+        background-color: rgb(248, 248, 248);
+      }
+      @media screen and (max-width: 960px) {
+        .cartBody {
+          width: 80%;
+        }
+      }
+      @media screen and (max-width: 768px) {
+        .cartBody {
+          width: 100%;
+        }
+      }
+      /*--------------CART style END-------------*/ /*--------------Transport,
+        livrare,
+        retur..style START------------*/
+      .iconita {
+        max-width: 64px;
+        max-height: 64px;
+      }
+
+      /*--------------Transport,livrare,retur..style END------------*/
+
+      /*--------------CAROUSEL style START-------------*/
+
+      @media screen and (max-width: 768px) {
+        .carouselCard:not(:first-child) {
+          display: none;
+        }
+        .card-group {
+          max-width: 60%;
+
+          margin: auto;
+        }
+      }
+      /*--------------CAROUSEL style START-------------*/
+
+      /*--------------MAIN images style START-------------*/
+      .testObjFit:hover {
+        opacity: 0.7;
+        transition: 0.5s ease-in-out;
+      }
+      .gridContainer {
+        display: grid;
+        gap: 10px;
+      }
+      .gridCol1,
+      .gridCol2 {
+        grid-row: 1/3;
+      }
+
+      .gridCol3 {
+        grid-row: 1/2;
+        grid-column: 3/4;
+      }
+      .gridCol3 {
+        grid-row: 2/3;
+        grid-column: 3/4;
+      }
+      @media screen and (max-width: 768px) {
+        .gridContainer {
+          display: grid;
+          gap: 5px;
+        }
+        .gridCol1 {
+          grid-row: 1/3;
+          grid-column: 1/2;
+        }
+        .gridCol2 {
+          grid-row: 1/3;
+          grid-column: 2/3;
+        }
+
+        .gridCol3 {
+          grid-row: 3/4;
+          grid-column: 1/2;
+        }
+        .gridCol3 {
+          grid-row: 3/4;
+          grid-column: 2/3;
+        }
+      }
+
+      /*--------------MAIN images style END-------------*/
+      /*--------------CONTACT images style START------------*/
+      .contactImg {
+        max-width: 16px;
+        max-height: 16px;
+      }
+      /*--------------FOOTER style START------------*/
+      #pageFooter {
+        background-color: #a2c11c;
+      }
     </style>
-    <div class="container-xl main" style="position: relative">
+    <div class="container-xl main gx-0" style="position: relative">
       <!------------------- SEARCH + CART -------------------->
       <div class="row py-3">
         <div class="col-3">
-          <button class="btn my-2">
+          <button class="btn m-2">
             <a class="navbar-brand text-success fw-bold" href="index.html"
               >BEST PET</a
             >
           </button>
         </div>
         <!-------------------- THE SEARCH -------------------->
-        <div class="col-6 d-flex justify-content-center">
-          <nav class="navbar navbar-light bg-light">
-            <form class="d-flex">
-              <input
-                class="form-control mr-sm-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <button
-                class="btn btn-outline-success my-2 my-sm-0"
-                type="submit"
-              >
-                Search
-              </button>
-            </form>
-          </nav>
+        <div
+          class="col-6 d-flex justify-content-center align-items-end"
+          style="position: relative"
+        >
+          <input
+            id="searchInput"
+            class="input rounded"
+            type="text"
+            placeholder=" Search"
+            aria-label="Search"
+            autocomplete="off"
+            onkeydown="loadData()"
+            onkeyup="search()"
+          />
+          <span class="p-1 px-2 text-secondary"
+            ><img src="images/search.png"
+          /></span>
+          <div
+            id="theList"
+            class="searchResults border border-1 rounded"
+            onmouseleave="hideResultsEmpty()"
+          ></div>
         </div>
         <!------------------END of THE SEARCH ------------------>
         <div class="col-3 d-flex justify-content-end">
-          <button class="btn btn-outline-secondary my-2" onclick="toggleCart()">
+          <button
+            id="cartCount"
+            class="btn btn-outline-secondary m-2"
+            onclick="toggleCart()"
+          >
             Cos(0)
           </button>
           <hr />
 
           <!--------------------- The CART ------------------>
-          <div
-            id="cartBG"
-            class="container-xl cartCard"
-            style="background-color: rgba(0, 0, 0, 0.4)"
-          >
-            <div class="border border-primary m-auto cartBody mt-5 rounded">
+          <div id="cartCard" class="container-xl">
+            <div class="border border-muted m-auto cartBody mt-5 rounded">
               <div class="row p-3">
                 <div class="col-8 pt-3">
-                  <p class="h4 p-1">Cos de cumparaturi</p>
+                  <p class="h4 p-1 fw-bold">Cos de cumparaturi</p>
                 </div>
                 <div class="col-4 d-flex justify-content-end">
                   <button class="btn" onclick="toggleCart()">
@@ -209,31 +336,50 @@
               </div>
               <!-------------- The cart CONTENT ----------------->
               <div id="cartContent">
-                <div class="row mx-0 my-3 pb-1 text-center border-bottom">
-                  <div class="col-5">Product</div>
+                <div
+                  class="row mx-0 my-3 pb-1 text-center border-bottom border border-muted"
+                >
+                  <div
+                    class="col-sm-3 col-md-4 col-5 fw-bold border-top border-muted py-2"
+                  >
+                    Product
+                  </div>
 
-                  <div class="col-2">Price</div>
-                  <div class="col-1">Qty</div>
-                  <div class="col-2">Total</div>
-                  <div class="col-2">Action</div>
+                  <div class="col-2 fw-bold border-top border-muted py-2">
+                    Price
+                  </div>
+                  <div class="col-1 fw-bold border-top border-muted py-2">
+                    Qty
+                  </div>
+                  <div class="col-2 fw-bold border-top border-muted py-2">
+                    Total
+                  </div>
+                  <div class="col-2 fw-bold border-top border-muted py-2">
+                    Action
+                  </div>
                 </div>
               </div>
               <!-------------- The cart CONTENT-END ----------------->
               <!-------------- The cart TOTAL  ----------------->
               <div class="d-flex justify-content-end">
-                <span id="total" class="p-3 me-3">Total: 0 lei</span>
+                <span id="total" class="p-3 me-3 fw-bold">Total: 0 lei</span>
+              </div>
+              <div class="row mx-auto cartBttns border-top border-muted">
+                <div id="cartBtn1" class="col-6 text-center pt-3">
+                  <button class="btn btn-success" onclick="toggleCart()">
+                    Continua
+                  </button>
+                </div>
+                <div id="cartBtn2" class="col-6 text-center pt-3">
+                  <button
+                    class="btn btn-secondary"
+                    onclick="cumpara(); deleteLocalStorage()"
+                  >
+                    Cumpara
+                  </button>
+                </div>
               </div>
               <!-------------- The cart TOTAL END ----------------->
-              <div id="cartBtn1">
-                <button class="btn btn-success" onclick="toggleCart()">
-                  Continua
-                </button>
-              </div>
-              <div id="cartBtn2">
-                <button class="btn btn-secondary" onclick="cumpara()">
-                  Cumpara
-                </button>
-              </div>
             </div>
           </div>
           <!-------------- The END of the CART ----------------->
@@ -376,57 +522,546 @@
       </div>
       <!-------------- TRANSPORT,LIVRARE,RETUR,SUPORT-END ------------>
       <hr class="my-3" />
-      <!------------------- ---The Main Images ----------------------->
+      <h2 class="fw-bold p-2 text-center">Produse caini</h2>
+      <div class="d-flex flex-wrap">
+        <div class="card m-3" style="width: 18rem">
+          <img
+            class="card-img-top"
+            src="images/caini/hrana/bosch-adult-miel-orez-1-247x247.jpg"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Bosch Adult Lamb/Rice 15 kg</p>
+            <br />
+            <p class="pret">
+              <span>159<sup>,29lei</sup></span>
+            </p>
+            <a href="#" class="btn btn-primary">Adauga in cos</a>
+          </div>
+        </div>
+        <div class="card m-3" style="width: 18rem">
+          <img
+            class="card-img-top"
+            src="images/caini/hrana/bosch-junior-mediu-1-247x247.jpg"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">CAINI</h5>
+            <p class="card-text">Bosch Junior Medium 15 kg</p>
+            <br />
+            <p class="pret">
+              <span>182<sup>,29lei</sup></span>
+            </p>
+            <a href="#" class="btn btn-primary">Adauga in cos</a>
+          </div>
+        </div>
+        <div class="card m-3" style="width: 18rem">
+          <img
+            class="card-img-top"
+            src="images/caini/hrana/brit-premium-247x247.jpg"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">CAINI</h5>
+            <p class="card-text">Brit Care Dog Sustainable Adult Large Breed</p>
+            <p class="pret">
+              <span>32<sup>,29lei</sup></span>
+            </p>
+            <a href="#" class="btn btn-primary">Adauga in cos</a>
+          </div>
+        </div>
+        <div class="card m-3" style="width: 18rem">
+          <img
+            class="card-img-top"
+            src="images/caini/hrana/dog_concept_plic_curcan_100_g-247x247.jpg"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">CAINI</h5>
+            <p class="card-text">
+              Dog Concept Plic Adult Curcan 100 g 24 buc/bax
+            </p>
+            <p class="pret">
+              <span>20<sup>,49lei</sup></span>
+            </p>
+            <a href="#" class="btn btn-primary">Adauga in cos</a>
+          </div>
+        </div>
+        <div class="card m-3" style="width: 18rem">
+          <img
+            class="card-img-top"
+            src="images/caini/hrana/NUTRALINE-DOG-CONSERVA-ADULT-MONOPROTEIN-MIEL-ULEI-DE-SOFRANEL-1-247x247.jpg"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">CAINI</h5>
+            <p class="card-text">
+              Nutraline Dog Conserva Adult Monoprotein Pui Ulei de
+              Floarea-Soarelui 400 g
+            </p>
+            <p class="pret">
+              <span>11<sup>,29lei</sup></span>
+            </p>
+            <a href="#" class="btn btn-primary">Adauga in cos</a>
+          </div>
+        </div>
+        <div class="card m-3" style="width: 18rem">
+          <img
+            class="card-img-top"
+            src="images/caini/hrana/NUTRALINE-DOG-CONSERVA-JUNIOR-VITA-CURCAN-ULEI-DE-IN-1-247x247.jpg"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">CAINI</h5>
+            <p class="card-text">
+              Nutraline Dog Conserva Adult Monoprotein Miel Ulei de Sofranel 800
+              g
+            </p>
+            <p class="pret">
+              <span>19 <sup>,19lei</sup></span>
+            </p>
+            <a href="#" class="btn btn-primary">Adauga in cos</a>
+          </div>
+        </div>
+        <div class="card m-3" style="width: 18rem">
+          <img
+            class="card-img-top"
+            src="images/caini/hrana/pedigree_plic_junior_pui_in_aspic_100_g-1-247x247.jpg"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">CAINI</h5>
+            <p class="card-text">Pedigree Adult Vita/Legume 3 Kg</p>
+            <br />
+            <p class="pret">
+              <span>39<sup>,19lei</sup></span>
+            </p>
+            <a href="#" class="btn btn-primary">Adauga in cos</a>
+          </div>
+        </div>
+        <div class="card m-3" style="width: 18rem">
+          <img
+            class="card-img-top"
+            src="images/caini/hrana/res_9ab5dd2f7d3bb9143666f9cc11255452-247x247.jpg"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">CAINI</h5>
+            <p class="card-text">Pedigree Adult Pui/Legume 3 Kg</p>
+            <br />
+            <p class="pret">
+              <span>39 <sup>,19lei</sup></span>
+            </p>
+            <a class="btn btn-primary">Adauga in cos</a>
+          </div>
+        </div>
+        <div class="card m-3" style="width: 18rem">
+          <img
+            class="card-img-top"
+            src="images/caini/recompense/55_1-1-247x247.jpg"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">CAINI</h5>
+            <p class="card-text">Pedigree Dentastix Mediu Mono 7 buc 180 g</p>
+            <p class="pret">
+              <span>15<sup>,72lei</sup></span>
+            </p>
+            <a href="#" class="btn btn-primary">Adauga in cos</a>
+          </div>
+        </div>
+        <div class="card m-3" style="width: 18rem">
+          <img
+            class="card-img-top"
+            src="images/caini/recompense/600_600-3-247x247.jpg"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">CAINI</h5>
+            <p class="card-text">Pedigree Dentastix Small Mono 7 buc 110 g</p>
+            <p class="pret">
+              <span>9<sup>,19lei</sup></span>
+            </p>
+            <a href="#" class="btn btn-primary">Adauga in cos</a>
+          </div>
+        </div>
+        <div class="card m-3" style="width: 18rem">
+          <img
+            class="card-img-top"
+            src="images/caini/recompense/63616__pla_pedigree_biscrok_3_koestliche_geschmacksrichtungen_3-247x247.jpg"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">CAINI</h5>
+            <p class="card-text">Pedigree Biscuiti Biscrok Multimix 500 g</p>
+            <p class="pret">
+              <span>18<sup>,19lei</sup></span>
+            </p>
+            <a href="#" class="btn btn-primary">Adauga in cos</a>
+          </div>
+        </div>
+        <div class="card m-3" style="width: 18rem">
+          <img
+            class="card-img-top"
+            src="images/caini/recompense/advance-articular-snack-hrana-complementara-pentru-caini-adulti-care-sustine-imbunatatirea-mobilitatii-510x510-1-247x247.jpg"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">CAINIe</h5>
+            <p class="card-text">Advance Dog Dental Stick 180g</p>
+            <p class="pret">
+              <span>14<sup>,99lei</sup></span>
+            </p>
+            <a href="#" class="btn btn-primary">Adauga in cos</a>
+          </div>
+        </div>
+        <div class="card m-3" style="width: 18rem">
+          <img
+            class="card-img-top"
+            src="images/caini/recompense/proline_boxby_grain_free_rata_100_g_1-1-247x247.jpg"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">CAINI</h5>
+            <p class="card-text">Proline Boxby Grain Free Miel 100 g</p>
+            <p class="pret">
+              <span>19<sup>,19lei</sup></span>
+            </p>
+            <a href="#" class="btn btn-primary">Adauga in cos</a>
+          </div>
+        </div>
+        <div class="card m-3" style="width: 18rem">
+          <img
+            class="card-img-top"
+            src="images/caini/recompense/DelightsBeefS_main-247x247.png"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">CAINI</h5>
+            <p class="card-text">8 in1 Recompense Delights Triple Flavor S</p>
+            <p class="pret">
+              <span>19<sup>,19lei</sup></span>
+            </p>
+            <a href="#" class="btn btn-primary">Adauga in cos</a>
+          </div>
+        </div>
+        <div class="card m-3" style="width: 18rem">
+          <img
+            class="card-img-top"
+            src="images/caini/recompense/PEDIGREE-Markies-recompense-caini-biscuiti-aroma-de-maduva-1.5kg-15619-247x247.jpeg"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">CAINI</h5>
+            <p class="card-text">Pedigree Biscuiti Markies Mini 500 g</p>
+            <p class="pret">
+              <span>11<sup>,59lei</sup></span>
+            </p>
 
-      <!----------------------The Main Images-END ----------------------->
-      <!---------------------- The Carousel START ------------------------>
+            <a href="#" class="btn btn-primary">Adauga in cos</a>
+          </div>
+        </div>
+        <div class="card m-3" style="width: 18rem">
+          <img
+            class="card-img-top"
+            src="images/caini/recompense/oasebbbq-247x312.jpg"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">CAINI</h5>
+            <p class="card-text">8 in1 Oase Delights 7 BUC</p>
+            <p class="pret">
+              <span>19<sup>,19lei</sup></span>
+            </p>
+            <a href="#" class="btn btn-primary">Adauga in cos</a>
+          </div>
+        </div>
+        <div class="card m-3" style="width: 18rem">
+          <img
+            class="card-img-top"
+            src="images/caini/accesorii/20585067_5-1-1-247x205.jpg"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">CAINI</h5>
+            <p class="card-text">New World Cusca Metalica 122 cm B48</p>
+            <p class="pret">
+              <span>149<sup>,99lei</sup></span>
+            </p>
+            <a href="#" class="btn btn-primary">Adauga in cos</a>
+          </div>
+        </div>
+        <div class="card m-3" style="width: 18rem">
+          <img
+            class="card-img-top"
+            src="images/caini/accesorii/413-3-247x200.jpg"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">CAINI</h5>
+            <p class="card-text">Ferplast Cusca Transport Atlas 20 + Pernita</p>
+            <p class="pret">
+              <span>98<sup>,99lei</sup></span>
+            </p>
+            <a href="#" class="btn btn-primary">Adauga in cos</a>
+          </div>
+        </div>
+        <div class="card m-3" style="width: 18rem">
+          <img
+            class="card-img-top"
+            src="images/caini/accesorii/657-1-247x229.jpg"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">CAINI</h5>
+            <p class="card-text">Ferplast Botnita Safe L</p>
+            <p class="pret">
+              <span>49<sup>,99lei</sup></span>
+            </p>
+            <a href="#" class="btn btn-primary">Adauga in cos</a>
+          </div>
+        </div>
+        <div class="card m-3" style="width: 18rem">
+          <img
+            class="card-img-top"
+            src="images/caini/accesorii/658-3-247x219.jpg"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">CAINI</h5>
+            <p class="card-text">Botnita Nylon 4</p>
+            <p class="pret">
+              <span>26<sup>,99lei</sup></span>
+            </p>
+            <a href="#" class="btn btn-primary">Adauga in cos</a>
+          </div>
+        </div>
+        <div class="card m-3" style="width: 18rem">
+          <img
+            class="card-img-top"
+            src="images/caini/accesorii/63-4-247x247.jpg"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">CAINI</h5>
+            <p class="card-text">Carabiniera 12 x 60 mm</p>
+            <p class="pret">
+              <span>9<sup>,99lei</sup></span>
+            </p>
+            <a href="#" class="btn btn-primary">Adauga in cos</a>
+          </div>
+        </div>
 
-      <!---------------------- The Carousel END ------------------------>
+        <div class="card m-3" style="width: 18rem">
+          <img
+            class="card-img-top"
+            src="images/caini/accesorii/dingo-nr-3-10-247x237 (1).jpg"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">CAINI</h5>
+            <p class="card-text">Botnita Piele 5137 Shar-Pei</p>
+            <p class="pret">
+              <span>39<sup>,99lei</sup></span>
+            </p>
+            <a href="#" class="btn btn-primary">Adauga in cos</a>
+          </div>
+        </div>
+        <div class="card m-3" style="width: 18rem">
+          <img
+            class="card-img-top"
+            src="images/caini/accesorii/lesa_silon_club_g10_120_verde_2-1-247x247.jpg"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">CAINI</h5>
+            <p class="card-text">Ferplast Lesa Silon Club G25/120 Verde</p>
+            <p class="pret">
+              <span>19<sup>,99lei</sup></span>
+            </p>
+            <a href="#" class="btn btn-primary">Adauga in cos</a>
+          </div>
+        </div>
+        <div class="card m-3" style="width: 18rem">
+          <img
+            class="card-img-top"
+            src="images/caini/accesorii/Pet-Expert-Haina-Caine-Green-BO-W19040-247x247.jpg"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">CAINI</h5>
+            <p class="card-text">Ferplast Vesta Verde L</p>
+            <p class="pret">
+              <span>91<sup>,99lei</sup></span>
+            </p>
+            <a href="#" class="btn btn-primary">Adauga in cos</a>
+          </div>
+        </div>
+        <div class="card m-3" style="width: 18rem">
+          <img
+            class="card-img-top"
+            src="images/caini/ingrijire/oftal-remover-1-247x247.jpg"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">CAINI</h5>
+            <p class="card-text">Beaphar Oftalm Remover 50 ml</p>
+            <p class="pret">
+              <span>21<sup>,19lei</sup></span>
+            </p>
+
+            <a href="#" class="btn btn-primary">AdauAINI</a>
+          </div>
+        </div>
+        <div class="card m-3" style="width: 18rem">
+          <img
+            class="card-img-top"
+            src="images/caini/ingrijire/arm-hammer-periuta-dinti-caini-360-3-247x247.jpg"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">CAINI</h5>
+            <p class="card-text">Periuta de Dinti Dubla</p>
+            <p class="pret">
+              <span>19<sup>,19lei</sup></span>
+            </p>
+            <a href="#" class="btn btn-primary">Adauga in cos</a>
+          </div>
+        </div>
+        <div class="card m-3" style="width: 18rem">
+          <img
+            class="card-img-top"
+            src="images/caini/ingrijire/res_4cfc6939e2edeb312c688fbdc98a2add_450x450_v12j-247x247.jpg"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">CAINI</h5>
+            <p class="card-text">
+              ECTO MAX Zgarda Antiparazitara Bio Dog Large 75 cm
+            </p>
+            <p class="pret">
+              <span>19<sup>,99lei</sup></span>
+            </p>
+            <a href="#" class="btn btn-primary">Adauga in cos</a>
+          </div>
+        </div>
+        <div class="card m-3" style="width: 18rem">
+          <img
+            class="card-img-top"
+            src="images/caini/ingrijire/zgarda-antiparazitara-caini-ecto-max-l-696-247x247.jpg"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">CAINI</h5>
+            <p class="card-text">
+              ECTO MAX Zgarda Antiparazitara Bio Dog Small 38 cm
+            </p>
+            <p class="pret">
+              <span>19<sup>,99lei</sup></span>
+            </p>
+            <a href="#" class="btn btn-primary">Adauga in cos</a>
+          </div>
+        </div>
+        <div class="card m-3" style="width: 18rem">
+          <img
+            class="card-img-top"
+            src="images/caini/ingrijire/944-1-247x247.jpg"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">CAINI</h5>
+            <p class="card-text">Pasta de Diniti Caini 150 ML</p>
+            <p class="pret">
+              <span>25<sup>,30lei</sup></span>
+            </p>
+            <a href="#" class="btn btn-primary">Adauga in cos</a>
+          </div>
+        </div>
+        <div class="card m-3" style="width: 18rem">
+          <img
+            class="card-img-top"
+            src="images/caini/ingrijire/20583686-1-247x247.jpg"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">CAINI</h5>
+            <p class="card-text">Covorase Absorbante Caini 15 BUC</p>
+            <p class="pret">
+              <span>18<sup>,19lei</sup></span>
+            </p>
+            <a href="#" class="btn btn-primary">Adauga in cos</a>
+          </div>
+        </div>
+      </div>
+      <hr />
+
       <!-------------------------- FOOTER ---------------------->
 
-      <div id="pageFooter" class="container-fluid py-4">
+      <div id="pageFooter" class="container-fluid py-5">
         <div class="row gy-4">
           <div class="col-lg-4 col-md-6">
-            <h5 class="h1 text-success">BestPet</h5>
-            <p class="small text-muted">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt.
+            <h5 class="h1 text-white">BestPet</h5>
+            <p class="small text-muted w-75">
+              BestPet iubește animalele de companie și de aceea își dorește să
+              fie primul pet shop online care să aducă acestora cea mai
+              delicioasă și calitativă hrană.
             </p>
             <p class="small text-muted mb-0">
               &copy; Copyrights. All rights reserved.
-              <a class="text-primary" href="#">Bootstrapious.com</a>
+              <a class="text-primary" href="index.html">BestPet</a>
             </p>
           </div>
           <div class="col-lg-2 col-md-6">
             <h5 class="text-white mb-3">Quick links</h5>
             <ul class="list-unstyled text-muted">
-              <li><a href="#">Home</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Get started</a></li>
-              <li><a href="#">FAQ</a></li>
+              <li><a class="text-muted" href="index.html">Acasa</a></li>
+              <li><a class="text-muted" href="indexAbout.html">Despre</a></li>
+              <li>
+                <a class="text-muted" href="indexRetur.html">Politica retur</a>
+              </li>
+              <li>
+                <a class="text-muted" href="indexComanda.html">Cum comand</a>
+              </li>
             </ul>
           </div>
           <div class="col-lg-2 col-md-6">
-            <h5 class="text-white mb-3">Quick links</h5>
-            <ul class="list-unstyled text-muted">
-              <li><a href="#">Home</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Get started</a></li>
-              <li><a href="#">FAQ</a></li>
+            <h5 class="text-white mb-3">Produsele noastre</h5>
+            <ul class="list-unstyled">
+              <li>
+                <a class="text-muted" href="indexImagineCaine.html"
+                  >Produse caini</a
+                >
+              </li>
+              <li>
+                <a class="text-muted" href="indexImaginePisica.html"
+                  >Produse pisici</a
+                >
+              </li>
+              <li>
+                <a class="text-muted" href="indexImaginePasare.html"
+                  >Produse pasari</a
+                >
+              </li>
+              <li>
+                <a class="text-muted" href="index.ImaginePeste.html"
+                  >Produse pesti</a
+                >
+              </li>
             </ul>
           </div>
           <div class="col-lg-4 col-md-6">
             <h5 class="text-white mb-3">Newsletter</h5>
-            <p class="small text-muted">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt.
+            <p class="small text-muted w-75">
+              Aboneaza-te la noi si vei fii intotdeauna primul care se bucura de
+              promotiile noastre!
             </p>
             <form action="#">
               <div class="input-group mb-3">
                 <input
                   class="form-control"
                   type="text"
-                  placeholder="Recipient's username"
+                  placeholder=" Adresa de email"
                   aria-label="Recipient's username"
                   aria-describedby="button-addon2"
                 />
@@ -445,7 +1080,5 @@
 
       <!------------------------- FOOTER END ------------------->
     </div>
-
-    <script src="/main.js"></script>
   </body>
 </html>
