@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>ProiectFinal</title>
+
     <script
       src="https://kit.fontawesome.com/d0a0da12c0.js"
       crossorigin="anonymous"
@@ -22,38 +23,32 @@
   <body>
     <style>
       body {
-        background-color: #e0ffcd;
+        background-color: white;
         /*background-image: linear-gradient(
-          to bottom right,
-          rgba(243, 243, 19, 0.896),
-          rgb(255, 217, 0)
-        );*/
+            to bottom right,
+            rgba(243, 243, 19, 0.896),
+            rgb(255, 217, 0)
+          );*/
       }
-      .testObjFit {
-        object-fit: none;
-      }
-      img {
-        width: 100%;
-        height: 100%;
-      }
+
       /*.dropbtn {
-        background-color: #34db87;
-        color: rgb(224, 21, 21);
-        padding: 16px;
-        font-size: 16px;
-        border: none;
-        cursor: pointer;
-      }
+          background-color: #34db87;
+          color: rgb(224, 21, 21);
+          padding: 16px;
+          font-size: 16px;
+          border: none;
+          cursor: pointer;
+        }
 
-      .dropbtn:hover,
-      .dropbtn:focus {
-        background-color: #136aa4;
-      }
+        .dropbtn:hover,
+        .dropbtn:focus {
+          background-color: #136aa4;
+        }
 
-      .dropdown {
-        position: relative;
-        display: inline-block;
-      }*/
+        .dropdown {
+          position: relative;
+          display: inline-block;
+        }*/
       .dropdown-content {
         display: none;
         position: absolute;
@@ -75,36 +70,53 @@
         background-color: #ddd;
       }
 
-      .show {
-        display: block;
-      }
-
-      .navMenu {
-        background-color: #e94822;
-      }
       .main {
         background-color: rgb(248, 248, 248);
       }
-      #pageFooter {
-        background-color: #a2c11c;
-      }
-      .menuBg {
-        /* background-color: blanchedalmond;*/
-      }
-      .iconita {
-        max-width: 64px;
-        max-height: 64px;
-      }
+
       .dropdown-toggle::after {
         /*REMOVE ARROW*/
         content: none;
       }
-      .close {
-        width: 15px;
-        height: 15px;
+      img {
+        width: 100%;
+        height: 100%;
       }
+      /*--------------SEARCH style START-------------*/
+      .searchResults {
+        position: absolute;
+        top: 55px;
+        left: 0;
+        z-index: 2;
+        display: none;
+        overflow-y: scroll;
+        border: #e94822 1px solid;
+        margin: auto;
+        height: 20vh;
+        width: 90%;
+        background-color: rgb(248, 248, 248);
+      }
+      .searchResults::-webkit-scrollbar {
+        display: none;
+      }
+      .listItem:hover {
+        background-color: white;
+        border-bottom: #ddd solid 1px;
+      }
+      #searchInput {
+        border: solid 1px rgb(181, 181, 181);
+        height: 40px;
+        width: 65%;
+      }
+      #searchInput:focus {
+        outline-color: rgb(181, 181, 200);
+      }
+
+      /*--------------SEARCH style END-------------*/
+
+      /*--------------CART style START-------------*/
       .closedCart {
-        background-color: cornsilk;
+        background-color: rgb(248, 248, 248);
         width: 600px;
         height: 100vh;
         position: absolute;
@@ -113,11 +125,144 @@
         z-index: -1;
       }
       .openCart {
-        z-index: 1;
+        z-index: 2;
         right: 0;
       }
+      .close {
+        width: 15px;
+        height: 15px;
+      }
+      .show {
+        display: block;
+      }
+      .cart-quantity-input {
+        height: 34px;
+        width: 50px;
+        border-radius: 5px;
+        border: 1px solid #56ccf2;
+        background-color: #eee;
+        color: #333;
+        padding: 0;
+        text-align: center;
+        font-size: 1.2em;
+        margin-right: 25px;
+      }
+      #cartCard {
+        position: fixed;
+        right: 0;
+        left: 0;
+        z-index: 2;
+        display: none;
+        height: 90vh;
+      }
+      .cartBody {
+        width: 60%;
+        height: 85%;
+        background-color: rgb(248, 248, 248);
+        position: relative;
+        overflow-y: scroll;
+        overflow-x: hidden;
+      }
+
+      .cartBttns {
+        position: absolute;
+        bottom: 0;
+        height: 15%;
+        width: 100%;
+        background-color: rgb(248, 248, 248);
+      }
+      @media screen and (max-width: 960px) {
+        .cartBody {
+          width: 80%;
+        }
+      }
+      @media screen and (max-width: 768px) {
+        .cartBody {
+          width: 100%;
+        }
+      }
+      /*--------------CART style END-------------*/ /*--------------Transport,
+        livrare,
+        retur..style START------------*/
+      .iconita {
+        max-width: 64px;
+        max-height: 64px;
+      }
+
+      /*--------------Transport,livrare,retur..style END------------*/
+
+      /*--------------CAROUSEL style START-------------*/
+
+      @media screen and (max-width: 768px) {
+        .carouselCard:not(:first-child) {
+          display: none;
+        }
+        .card-group {
+          max-width: 60%;
+
+          margin: auto;
+        }
+      }
+      /*--------------CAROUSEL style START-------------*/
+
+      /*--------------MAIN images style START-------------*/
+      .testObjFit:hover {
+        opacity: 0.7;
+        transition: 0.5s ease-in-out;
+      }
+      .gridContainer {
+        display: grid;
+        gap: 10px;
+      }
+      .gridCol1,
+      .gridCol2 {
+        grid-row: 1/3;
+      }
+
+      .gridCol3 {
+        grid-row: 1/2;
+        grid-column: 3/4;
+      }
+      .gridCol3 {
+        grid-row: 2/3;
+        grid-column: 3/4;
+      }
+      @media screen and (max-width: 768px) {
+        .gridContainer {
+          display: grid;
+          gap: 5px;
+        }
+        .gridCol1 {
+          grid-row: 1/3;
+          grid-column: 1/2;
+        }
+        .gridCol2 {
+          grid-row: 1/3;
+          grid-column: 2/3;
+        }
+
+        .gridCol3 {
+          grid-row: 3/4;
+          grid-column: 1/2;
+        }
+        .gridCol3 {
+          grid-row: 3/4;
+          grid-column: 2/3;
+        }
+      }
+
+      /*--------------MAIN images style END-------------*/
+      /*--------------CONTACT images style START------------*/
+      .contactImg {
+        max-width: 16px;
+        max-height: 16px;
+      }
+      /*--------------FOOTER style START------------*/
+      #pageFooter {
+        background-color: #a2c11c;
+      }
     </style>
-    <div class="container-xl main gx-0">
+    <div class="container-xl main gx-0" onclick="hideResults()">
       <!------------------- SEARCH + CART -------------------->
       <div class="row py-3">
         <div class="col-3">
@@ -128,232 +273,120 @@
           </button>
         </div>
         <!-------------------- THE SEARCH -------------------->
-        <div class="col-6 d-flex justify-content-center">
-          <nav class="navbar navbar-light bg-light">
-            <form class="d-flex">
-              <input
-                class="form-control mr-sm-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <button
-                class="btn btn-outline-success my-2 my-sm-0"
-                type="submit"
-              >
-                Search
-              </button>
-            </form>
-          </nav>
+        <div
+          class="col-6 d-flex justify-content-center align-items-end"
+          style="position: relative"
+        >
+          <input
+            id="searchInput"
+            class="input rounded"
+            type="text"
+            placeholder=" Search"
+            aria-label="Search"
+            autocomplete="off"
+            onkeydown="loadData()"
+            onkeyup="search()"
+          />
+          <span class="p-1 px-2 text-secondary"
+            ><img src="images/search.png"
+          /></span>
+          <div
+            id="theList"
+            class="searchResults border border-1 rounded"
+            onmouseleave="hideResultsEmpty()"
+          ></div>
         </div>
         <!------------------END of THE SEARCH ------------------>
         <div class="col-3 d-flex justify-content-end">
-          <button class="btn btn-outline-secondary m-2" onclick="cartToggle()">
+          <button
+            id="cartCount"
+            class="btn btn-outline-secondary m-2"
+            onclick="toggleCart()"
+          >
             Cos(0)
           </button>
           <hr />
 
           <!--------------------- The CART ------------------>
-          <section
-            id="cartCard"
-            class="border border-secondary rounded position-absolute closedCart"
-            style="background-color: cornsilk; width: 30vw; height: 60vh"
-          >
-            <div class="container h-100 py-3">
-              <div
-                class="row d-flex justify-content-center align-items-center h-100 overflow-auto"
-              >
-                <div>
-                  <button class="btn" onclick="closeCart()">
-                    <img class="close" src="images/close.png" alt="Closing x" />
+          <div id="cartCard" class="container-xl">
+            <div class="border border-muted m-auto cartBody mt-5 rounded">
+              <div class="row p-3">
+                <div class="col-8 pt-3">
+                  <p class="h4 p-1 fw-bold">Cos de cumparaturi</p>
+                </div>
+                <div class="col-4 d-flex justify-content-end">
+                  <button class="btn" onclick="toggleCart()">
+                    <svg
+                      height="20px"
+                      id="Layer_1"
+                      style="enable-background: new 0 0 512 512"
+                      version="1.1"
+                      viewBox="0 0 512 512"
+                      width="20px"
+                      xml:space="preserve"
+                      xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                      <path
+                        d="M443.6,387.1L312.4,255.4l131.5-130c5.4-5.4,5.4-14.2,0-19.6l-37.4-37.6c-2.6-2.6-6.1-4-9.8-4c-3.7,0-7.2,1.5-9.8,4  L256,197.8L124.9,68.3c-2.6-2.6-6.1-4-9.8-4c-3.7,0-7.2,1.5-9.8,4L68,105.9c-5.4,5.4-5.4,14.2,0,19.6l131.5,130L68.4,387.1  c-2.6,2.6-4.1,6.1-4.1,9.8c0,3.7,1.4,7.2,4.1,9.8l37.4,37.6c2.7,2.7,6.2,4.1,9.8,4.1c3.5,0,7.1-1.3,9.8-4.1L256,313.1l130.7,131.1  c2.7,2.7,6.2,4.1,9.8,4.1c3.5,0,7.1-1.3,9.8-4.1l37.4-37.6c2.6-2.6,4.1-6.1,4.1-9.8C447.7,393.2,446.2,389.7,443.6,387.1z"
+                      />
+                    </svg>
                   </button>
                 </div>
-                <div class="col-11">
+              </div>
+              <!-------------- The cart CONTENT ----------------->
+              <div id="cartContent">
+                <div
+                  class="row mx-0 my-3 pb-1 text-center border-bottom border border-muted"
+                >
                   <div
-                    class="d-flex justify-content-between align-items-center mb-4"
+                    class="col-sm-3 col-md-4 col-5 fw-bold border-top border-muted py-2"
                   >
-                    <h3 class="fw-normal mb-0 text-black">
-                      Cos de cumparaturi
-                    </h3>
+                    Product
                   </div>
 
-                  <div class="card rounded-3 mb-4">
-                    <div class="card-body p-2">
-                      <div
-                        class="row d-flex justify-content-between align-items-center"
-                      >
-                        <div class="col-md-2 col-lg-2 col-xl-2">
-                          <img
-                            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
-                            class="img-fluid rounded-3"
-                            alt="Cotton T-shirt"
-                          />
-                        </div>
-                        <div class="col-md-3 col-lg-3 col-xl-3">
-                          <p class="lead fw-normal mb-2">Basic T-shirt</p>
-                        </div>
-                        <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                          <button
-                            class="btn btn-link px-2"
-                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
-                          >
-                            <i class="fas fa-minus"></i>
-                          </button>
-
-                          <input
-                            id="form1"
-                            min="0"
-                            name="quantity"
-                            value="2"
-                            type="number"
-                            class="form-control form-control-sm px-2"
-                          />
-
-                          <button
-                            class="btn btn-link"
-                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
-                          >
-                            <i class="fas fa-plus"></i>
-                          </button>
-                        </div>
-                        <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                          <h6 class="mb-0">$499.00</h6>
-                        </div>
-                        <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                          <a href="#!" class="text-danger"
-                            ><i class="fas fa-trash fa-lg"></i
-                          ></a>
-                        </div>
-                      </div>
-                    </div>
+                  <div class="col-2 fw-bold border-top border-muted py-2">
+                    Price
                   </div>
-
-                  <div class="card rounded-3 mb-4">
-                    <div class="card-body p-2">
-                      <div
-                        class="row d-flex justify-content-between align-items-center"
-                      >
-                        <div class="col-md-2 col-lg-2 col-xl-2">
-                          <img
-                            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
-                            class="img-fluid rounded-3"
-                            alt="Cotton T-shirt"
-                          />
-                        </div>
-                        <div class="col-md-3 col-lg-3 col-xl-3">
-                          <p class="lead fw-normal mb-2">Basic T-shirt</p>
-                        </div>
-                        <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                          <button
-                            class="btn btn-link px-2"
-                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
-                          >
-                            <i class="fas fa-minus"></i>
-                          </button>
-
-                          <input
-                            id="form1"
-                            min="0"
-                            name="quantity"
-                            value="2"
-                            type="number"
-                            class="form-control form-control-sm"
-                          />
-
-                          <button
-                            class="btn btn-link px-2"
-                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
-                          >
-                            <i class="fas fa-plus"></i>
-                          </button>
-                        </div>
-                        <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                          <h6 class="mb-0">$499.00</h6>
-                        </div>
-                        <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                          <a href="#!" class="text-danger"
-                            ><i class="fas fa-trash fa-lg"></i
-                          ></a>
-                        </div>
-                      </div>
-                    </div>
+                  <div class="col-1 fw-bold border-top border-muted py-2">
+                    Qty
                   </div>
-
-                  <div class="card rounded-3 mb-4">
-                    <div class="card-body p-2">
-                      <div
-                        class="row d-flex justify-content-between align-items-center"
-                      >
-                        <div class="col-md-2 col-lg-2 col-xl-2">
-                          <img
-                            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
-                            class="img-fluid rounded-3"
-                            alt="Cotton T-shirt"
-                          />
-                        </div>
-                        <div class="col-md-3 col-lg-3 col-xl-3">
-                          <p class="lead fw-normal mb-2">Basic T-shirt</p>
-                        </div>
-                        <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                          <button
-                            class="btn btn-link px-2"
-                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
-                          >
-                            <i class="fas fa-minus"></i>
-                          </button>
-
-                          <input
-                            id="form1"
-                            min="0"
-                            name="quantity"
-                            value="2"
-                            type="number"
-                            class="form-control form-control-sm"
-                          />
-
-                          <button
-                            class="btn btn-link px-2"
-                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
-                          >
-                            <i class="fas fa-plus"></i>
-                          </button>
-                        </div>
-                        <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                          <h6 class="mb-0">$499.00</h6>
-                        </div>
-                        <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                          <a href="#!" class="text-danger"
-                            ><i class="fas fa-trash fa-lg"></i
-                          ></a>
-                        </div>
-                      </div>
-                    </div>
+                  <div class="col-2 fw-bold border-top border-muted py-2">
+                    Total
                   </div>
-
-                  <div class="card d-flex align-self-end">
-                    <div class="card-body">
-                      <button
-                        type="button"
-                        class="btn btn-warning btn-block btn-md"
-                      >
-                        Proceed to Pay
-                      </button>
-                    </div>
-                    <div class="p-3 cart-total align-self-end bg-primary">
-                      <strong class="cart-total-title">Total</strong>
-                      <span class="cart-total-price">0.00</span>
-                    </div>
+                  <div class="col-2 fw-bold border-top border-muted py-2">
+                    Action
                   </div>
                 </div>
               </div>
+              <!-------------- The cart CONTENT-END ----------------->
+              <!-------------- The cart TOTAL  ----------------->
+              <div class="d-flex justify-content-end">
+                <span id="total" class="p-3 me-3 fw-bold">Total: 0 lei</span>
+              </div>
+              <div class="row mx-auto cartBttns border-top border-muted">
+                <div id="cartBtn1" class="col-6 text-center pt-3">
+                  <button class="btn btn-success" onclick="toggleCart()">
+                    Continua
+                  </button>
+                </div>
+                <div id="cartBtn2" class="col-6 text-center pt-3">
+                  <button
+                    class="btn btn-secondary"
+                    onclick="cumpara(); deleteLocalStorage()"
+                  >
+                    Cumpara
+                  </button>
+                </div>
+              </div>
+              <!-------------- The cart TOTAL END ----------------->
             </div>
-          </section>
-
+          </div>
           <!-------------- The END of the CART ----------------->
         </div>
       </div>
       <!--------------- The END 0f SEARCH + CART---------------->
-      <hr class="my-4" />
+      <hr class="my-3" />
       <!------------------------ The MENU --------------------->
       <div class="container menuBg">
         <div class="d-flex justify-content-center w-50 mx-auto">
@@ -458,7 +491,7 @@
         </div>
       </div>
       <!------------------ The END of the MENU ----------------->
-      <hr class="my-4" />
+      <hr class="my-3" />
       <!----------- TRANSPORT,LIVRARE,RETUR,SUPORT ------------>
       <div class="container">
         <div class="row text-center">
@@ -489,69 +522,412 @@
       </div>
       <!-------------- TRANSPORT,LIVRARE,RETUR,SUPORT-END ------------>
       <hr class="my-4" />
+      <!---------------------- Main Images START ------------------------>
+      <div class="row mt-2 mx-3 my-5 justify-content-center gridContainer">
+        <div class="gridCol1">
+          <a href="indexImaginePisica.html"
+            ><img class="testObjFit" src="images/dogResizedNoText.png" alt=""
+          /></a>
+        </div>
 
-      <div class="row mt-2 mx-3 my-5 justify-content-center">
-        <div class="col-5">
-          <img class="testObjFit" src="images/dogResizedNoText.png" alt="" />
+        <div class="gridCol2">
+          <a href="indexImaginePisica.html"
+            ><img class="testObjFit" src="images/catResizedNoText.png" alt=""
+          /></a>
         </div>
-        <div class="col-4">
-          <img class="testObjFit" src="images/catResizedNoText.png" alt="" />
+
+        <div class="gridCol3">
+          <a href="index.ImaginePeste.html"
+            ><img class="testObjFit" src="images/fishResizedNoText.png" alt=""
+          /></a>
         </div>
-        <div class="col-3 align-content-around">
-          <div class="col-12 text-center pt-2 pb-2">
-            <img class="testObjFit" src="images/fishResizedNoText.png" alt="" />
+        <div class="gridCol4">
+          <a href="indexImaginePasare.html"
+            ><img class="testObjFit" src="images/birdsResizedNoText.png"
+          /></a>
+        </div>
+      </div>
+      <!---------------------- Main Images END ------------------------>
+      <hr />
+
+      <h3 class="text-center p-3">Produse recomandate</h3>
+
+      <hr class="my-3" />
+      <!---------------------- The Carousel START ------------------------>
+      <div
+        id="carouselExampleCaptions"
+        class="carousel carousel-dark slide mb-3"
+        data-bs-ride="false"
+      >
+        <div class="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide-to="0"
+            class="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide-to="1"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide-to="2"
+            aria-label="Slide 3"
+          ></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div id="cardGroupCarousel" class="card-group">
+              <div class="card m-5 carouselCard border border-muted rounded">
+                <img
+                  class="card-img-top"
+                  src="images/pisici/hrana/schesir-conserva-ton-creveti-1-247x247.jpg"
+                  alt="Card image cap"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">Pisici</h5>
+                  <p class="card-text">
+                    Schesir Cons Pisica Ton/Creveti 85 g <br />
+                  </p>
+                  <p class="pret">
+                    <span>16<sup>,99lei</sup></span>
+                  </p>
+                  <a class="btn btn-primary">Adauga in cos</a>
+                </div>
+              </div>
+              <div class="card m-5 carouselCard border border-muted rounded">
+                <img
+                  class="card-img-top"
+                  src="images/pesti/acvarii/Untitled-2-2-247x247.jpg"
+                  alt="Card image cap"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">Acvarii</h5>
+                  <p class="card-text">
+                    Aquael Acvariu Clasic Rectangular 60 L
+                  </p>
+                  <p class="pret">
+                    <span>599<sup>,99lei</sup></span>
+                  </p>
+                  <a class="btn btn-primary">Adauga in cos</a>
+                </div>
+              </div>
+              <div class="card m-5 carouselCard border border-muted rounded">
+                <img
+                  class="card-img-top"
+                  src="images/caini/hrana/NUTRALINE-DOG-CONSERVA-ADULT-MONOPROTEIN-MIEL-ULEI-DE-SOFRANEL-1-247x247.jpg"
+                  alt="Card image cap"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">CAINI</h5>
+                  <p class="card-text">
+                    Nutraline Dog Conserva Adult Monoprotein Pui Ulei de
+                    Floarea-Soarelui 400 g
+                  </p>
+                  <p class="pret">
+                    <span>11<sup>,29lei</sup></span>
+                  </p>
+                  <a class="btn btn-primary">Adauga in cos</a>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="col-12 text-center pt-3">
-            <img class="testObjFit" src="images/birdsResizedNoText.png" />
+          <div class="carousel-item">
+            <div class="card-group">
+              <div class="card m-5 carouselCard border border-muted rounded">
+                <img
+                  class="card-img-top"
+                  src="images/pisici/hrana/1337-1-247x247.jpg"
+                  alt="Card image cap"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">Pisici</h5>
+                  <p class="card-text">Applaws Natural Care Food</p>
+                  <p class="pret">
+                    <span>15<sup>,99lei</sup></span>
+                  </p>
+                  <a class="btn btn-primary">Adauga in cos</a>
+                </div>
+              </div>
+              <div
+                class="card m-5 carouselCard border border-muted rounded"
+                style="width: 18rem"
+              >
+                <img
+                  class="card-img-top"
+                  src="images/caini/ingrijire/res_4cfc6939e2edeb312c688fbdc98a2add_450x450_v12j-247x247.jpg"
+                  alt="Card image cap"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">CAINI</h5>
+                  <p class="card-text">
+                    ECTO MAX Zgarda Antiparazitara Bio Dog Large 75 cm
+                  </p>
+                  <p class="pret">
+                    <span>19<sup>,99lei</sup></span>
+                  </p>
+                  <a href="#" class="btn btn-primary">Adauga in cos</a>
+                </div>
+              </div>
+              <div class="card m-5 carouselCard border border-muted rounded">
+                <img
+                  class="card-img-top"
+                  src="images/pasari/hrana/belcuore-grit-280g-247x247.jpg"
+                  alt="Card image cap"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">Pasari</h5>
+                  <p class="card-text">Belcuore Grit Scoici Macinate 280 g</p>
+                  <p class="pret">
+                    <span>13<sup>,99lei</sup></span>
+                  </p>
+                  <a class="btn btn-primary">Adauga in cos</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="card-group">
+              <div class="card m-5 carouselCard border border-muted rounded">
+                <img
+                  class="card-img-top"
+                  src="images/pisici/hrana/1102-2-247x247.jpg"
+                  alt="Card image cap"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">Pisici</h5>
+                  <p class="card-text">Royal Canin Felin Digestive</p>
+                  <p class="pret">
+                    <span>21<sup>,99lei</sup></span>
+                  </p>
+                  <a class="btn btn-primary">Adauga in cos</a>
+                </div>
+              </div>
+              <div class="card m-5 carouselCard border border-muted rounded">
+                <img
+                  class="card-img-top"
+                  src="images/caini/hrana/bosch-adult-miel-orez-1-247x247.jpg"
+                  alt="Card image cap"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Bosch Adult Lamb/Rice 15 kg</p>
+                  <br />
+                  <p class="pret">
+                    <span>159<sup>,29lei</sup></span>
+                  </p>
+                  <a class="btn btn-primary">Adauga in cos</a>
+                </div>
+              </div>
+              <div class="card m-5 carouselCard border border-muted rounded">
+                <img
+                  class="card-img-top"
+                  src="images/pesti/hrana/379-2-247x247.jpg"
+                  alt="Card image cap"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">Pesti</h5>
+                  <p class="card-text">Tetra Meniu 100 ml</p>
+                  <p class="pret">
+                    <span>13<sup>,99lei</sup></span>
+                  </p>
+                  <a class="btn btn-primary">Adauga in cos</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleCaptions"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleCaptions"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+      <!---------------------- The Carousel END ------------------------>
+
+      <!---------------------- Adaugate recent start ------------------------>
+      <h2 class="fw-bold text-center p-3">Produse adaugate recent</h2>
+      <hr />
+      <div class="row">
+        <div class="card m-3" style="width: 18rem">
+          <img
+            class="card-img-top"
+            src="images/caini/hrana/pedigree_plic_junior_pui_in_aspic_100_g-1-247x247.jpg"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">CAINI</h5>
+            <p class="card-text">Pedigree Adult Vita/Legume 3 Kg</p>
+            <br />
+            <p class="pret">
+              <span>39<sup>,19lei</sup></span>
+            </p>
+            <a href="#" class="btn btn-primary">Adauga in cos</a>
+          </div>
+        </div>
+        <div class="card m-3" style="width: 18rem">
+          <img
+            class="card-img-top"
+            src="images/pisici/hrana/1600_1600-2-1-247x247.jpg"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Pisici</h5>
+            <p class="card-text">Royal Canin Care Hairball</p>
+            <p class="pret">
+              <span>30<sup>,99lei</sup></span>
+            </p>
+            <a href="#" class="btn btn-primary">Adauga in cos</a>
+          </div>
+        </div>
+        <div class="card m-3" style="width: 18rem">
+          <img
+            class="card-img-top"
+            src="images/pasari/hrana/SF-247x247.jpg"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Pasari</h5>
+            <p class="card-text">Vitakraft Meniu Canari 1 KG</p>
+            <p class="pret">
+              <span>23<sup>,99lei</sup></span>
+            </p>
+            <a href="#" class="btn btn-primary">Adauga in cos</a>
+          </div>
+        </div>
+        <div class="card m-3" style="width: 18rem">
+          <img
+            class="card-img-top"
+            src="images/pisici/ingrijire/84-247x247.jpg"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Pisici</h5>
+            <p class="card-text">Vitakraft Iarba Pisicii 120 g</p>
+            <p class="pret">
+              <span>18<sup>,99lei</sup></span>
+            </p>
+            <a href="#" class="btn btn-primary">Adauga in cos</a>
           </div>
         </div>
       </div>
-
+      <!---------------------- Adaugate recent end------------------------>
+      <!---------------------- Contacteaza-ne! start------------------------>
+      <div class="container">
+        <div class="row p-3 my-5 rounded d-flex justify-content-around">
+          <div
+            class="col-md-12 col-xl-3 text-center border border-muted rounded my-2"
+          >
+            <h4>Contacteaza-ne!</h4>
+            <p>Iti stam mereu la dispozitie</p>
+          </div>
+          <div
+            class="col-sm-12 col-md-4 col-xl-2 border border-muted rounded my-2"
+          >
+            <img class="contactImg" src="images/002-call.png" alt="" />
+            <p>0734789987</p>
+          </div>
+          <div
+            class="col-sm-12 col-md-4 col-xl-2 border border-muted rounded my-2"
+          >
+            <img src="images/003-mail.png" alt="" class="contactImg" />
+            <p>bestpet@contact.com</p>
+          </div>
+          <div
+            class="col-sm-12 col-md-4 col-xl-2 border border-muted rounded my-2"
+          >
+            <img src="images/001-pin.png" alt="" class="contactImg" />
+            <p><a href="">Locatie</a></p>
+          </div>
+        </div>
+      </div>
+      <!---------------------- Contacteaza-ne! end------------------------>
       <!-------------------------- FOOTER ---------------------->
 
-      <div id="pageFooter" class="container-fluid py-4">
+      <div id="pageFooter" class="container-fluid py-5">
         <div class="row gy-4">
           <div class="col-lg-4 col-md-6">
             <h5 class="h1 text-white">BestPet</h5>
-            <p class="small text-muted">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt.
+            <p class="small text-muted w-75">
+              BestPet iubește animalele de companie și de aceea își dorește să
+              fie primul pet shop online care să aducă acestora cea mai
+              delicioasă și calitativă hrană.
             </p>
             <p class="small text-muted mb-0">
               &copy; Copyrights. All rights reserved.
-              <a class="text-primary" href="#">Bootstrapious.com</a>
+              <a class="text-primary" href="index.html">BestPet</a>
             </p>
           </div>
           <div class="col-lg-2 col-md-6">
             <h5 class="text-white mb-3">Quick links</h5>
             <ul class="list-unstyled text-muted">
-              <li><a href="#">Home</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Get started</a></li>
-              <li><a href="#">FAQ</a></li>
+              <li><a class="text-muted" href="index.html">Acasa</a></li>
+              <li><a class="text-muted" href="indexAbout.html">Despre</a></li>
+              <li>
+                <a class="text-muted" href="indexRetur.html">Politica retur</a>
+              </li>
+              <li>
+                <a class="text-muted" href="indexComanda.html">Cum comand</a>
+              </li>
             </ul>
           </div>
           <div class="col-lg-2 col-md-6">
-            <h5 class="text-white mb-3">Quick links</h5>
-            <ul class="list-unstyled text-muted">
-              <li><a href="#">Home</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Get started</a></li>
-              <li><a href="#">FAQ</a></li>
+            <h5 class="text-white mb-3">Produsele noastre</h5>
+            <ul class="list-unstyled">
+              <li>
+                <a class="text-muted" href="indexImagineCaine.html"
+                  >Produse caini</a
+                >
+              </li>
+              <li>
+                <a class="text-muted" href="indexImaginePisica.html"
+                  >Produse pisici</a
+                >
+              </li>
+              <li>
+                <a class="text-muted" href="indexImaginePasare.html"
+                  >Produse pasari</a
+                >
+              </li>
+              <li>
+                <a class="text-muted" href="index.ImaginePeste.html"
+                  >Produse pesti</a
+                >
+              </li>
             </ul>
           </div>
           <div class="col-lg-4 col-md-6">
             <h5 class="text-white mb-3">Newsletter</h5>
-            <p class="small text-muted">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt.
+            <p class="small text-muted w-75">
+              Aboneaza-te la noi si vei fii intotdeauna primul care se bucura de
+              promotiile noastre!
             </p>
             <form action="#">
               <div class="input-group mb-3">
                 <input
                   class="form-control"
                   type="text"
-                  placeholder="Recipient's username"
+                  placeholder=" Adresa de email"
                   aria-label="Recipient's username"
                   aria-describedby="button-addon2"
                 />
@@ -571,31 +947,6 @@
       <!------------------------- FOOTER END ------------------->
     </div>
 
-    <script>
-      function myFunction() {
-        document.getElementById("myDropdown").classList.toggle("show");
-      }
-
-      // Close the dropdown if the user clicks outside of it
-      window.onclick = function (event) {
-        if (!event.target.matches(".dropbtn")) {
-          var dropdowns = document.getElementsByClassName("dropdown-content");
-          var i;
-          for (i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains("show")) {
-              openDropdown.classList.remove("show");
-            }
-          }
-        }
-      };
-
-      function cartToggle() {
-        document.getElementById("cartCard").classList.add("openCart");
-      }
-      function closeCart() {
-        document.getElementById("cartCard").classList.remove("openCart");
-      }
-    </script>
+    <script src="main.js"></script>
   </body>
 </html>
