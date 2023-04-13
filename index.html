@@ -193,16 +193,30 @@
 
       /*--------------CAROUSEL style START-------------*/
 
-      @media screen and (max-width: 768px) {
-        .carouselCard:not(:first-child) {
+      @media screen and (max-width: 576px) {
+        .carouselCard:first-child {
           display: none;
         }
-        .card-group {
-          max-width: 60%;
+        .carouselCard:last-child {
+          display: none;
+        }
+        .carousel-item {
+          max-width: 70% !important;
 
-          margin: auto;
+          /* margin-left: 10% !important; */
         }
       }
+      @media screen and (max-width: 768px) {
+        .carouselCard:first-child {
+          display: none;
+        }
+      }
+      @media screen and (max-width: 960px) {
+        .active {
+          max-width: 100%;
+        }
+      }
+
       /*--------------CAROUSEL style START-------------*/
 
       /*--------------MAIN images style START-------------*/
@@ -563,7 +577,7 @@
       <!---------------------- Main Images END ------------------------>
       <hr />
 
-      <h3 class="text-center p-3">Produse recomandate</h3>
+      <h2 class="text-center p-3 fw-bold">Produse recomandate</h2>
 
       <hr class="my-3" />
       <!---------------------- The Carousel START ------------------------>
@@ -597,7 +611,9 @@
         <div class="carousel-inner">
           <div class="carousel-item active">
             <div id="cardGroupCarousel" class="card-group">
-              <div class="card m-5 carouselCard border border-muted rounded">
+              <div
+                class="card ms-sm-3 mx-sm-1 mx-md-2 mx-lg-1 mx-xl-4 m-5 carouselCard border border-muted rounded"
+              >
                 <img
                   class="card-img-top"
                   src="images/pisici/hrana/schesir-conserva-ton-creveti-1-247x247.jpg"
@@ -614,7 +630,9 @@
                   <a class="btn btn-primary">Adauga in cos</a>
                 </div>
               </div>
-              <div class="card m-5 carouselCard border border-muted rounded">
+              <div
+                class="card ms-sm-3 mx-sm-1 mx-md-2 mx-lg-1 mx-xl-4 m-5 carouselCard border border-muted rounded"
+              >
                 <img
                   class="card-img-top"
                   src="images/pesti/acvarii/Untitled-2-2-247x247.jpg"
@@ -631,7 +649,9 @@
                   <a class="btn btn-primary">Adauga in cos</a>
                 </div>
               </div>
-              <div class="card m-5 carouselCard border border-muted rounded">
+              <div
+                class="card ms-sm-3 mx-sm-1 mx-md-2 mx-lg-1 mx-xl-4 m-5 carouselCard border border-muted rounded"
+              >
                 <img
                   class="card-img-top"
                   src="images/caini/hrana/NUTRALINE-DOG-CONSERVA-ADULT-MONOPROTEIN-MIEL-ULEI-DE-SOFRANEL-1-247x247.jpg"
@@ -653,7 +673,9 @@
           </div>
           <div class="carousel-item">
             <div class="card-group">
-              <div class="card m-5 carouselCard border border-muted rounded">
+              <div
+                class="card ms-sm-3 mx-sm-1 mx-md-2 mx-lg-1 mx-xl-4 m-5 carouselCard border border-muted rounded"
+              >
                 <img
                   class="card-img-top"
                   src="images/pisici/hrana/1337-1-247x247.jpg"
@@ -669,7 +691,7 @@
                 </div>
               </div>
               <div
-                class="card m-5 carouselCard border border-muted rounded"
+                class="card ms-sm-3 mx-sm-1 mx-md-2 mx-lg-1 mx-xl-4 m-5 carouselCard border border-muted rounded"
                 style="width: 18rem"
               >
                 <img
@@ -688,7 +710,9 @@
                   <a href="#" class="btn btn-primary">Adauga in cos</a>
                 </div>
               </div>
-              <div class="card m-5 carouselCard border border-muted rounded">
+              <div
+                class="card ms-sm-3 mx-sm-1 mx-md-2 mx-lg-1 mx-xl-4 m-5 carouselCard border border-muted rounded"
+              >
                 <img
                   class="card-img-top"
                   src="images/pasari/hrana/belcuore-grit-280g-247x247.jpg"
@@ -707,7 +731,9 @@
           </div>
           <div class="carousel-item">
             <div class="card-group">
-              <div class="card m-5 carouselCard border border-muted rounded">
+              <div
+                class="card ms-sm-3 mx-sm-1 mx-md-2 mx-lg-1 mx-xl-4 m-5 carouselCard border border-muted rounded"
+              >
                 <img
                   class="card-img-top"
                   src="images/pisici/hrana/1102-2-247x247.jpg"
@@ -722,7 +748,9 @@
                   <a class="btn btn-primary">Adauga in cos</a>
                 </div>
               </div>
-              <div class="card m-5 carouselCard border border-muted rounded">
+              <div
+                class="card ms-sm-3 mx-sm-1 mx-md-2 mx-lg-1 mx-xl-4 m-5 carouselCard border border-muted rounded"
+              >
                 <img
                   class="card-img-top"
                   src="images/caini/hrana/bosch-adult-miel-orez-1-247x247.jpg"
@@ -738,7 +766,9 @@
                   <a class="btn btn-primary">Adauga in cos</a>
                 </div>
               </div>
-              <div class="card m-5 carouselCard border border-muted rounded">
+              <div
+                class="card ms-sm-3 mx-sm-1 mx-md-2 mx-lg-1 mx-xl-4 m-5 carouselCard border border-muted rounded"
+              >
                 <img
                   class="card-img-top"
                   src="images/pesti/hrana/379-2-247x247.jpg"
@@ -781,7 +811,7 @@
       <!---------------------- Adaugate recent start ------------------------>
       <h2 class="fw-bold text-center p-3">Produse adaugate recent</h2>
       <hr />
-      <div class="row">
+      <div class="row recentProducts justify-content-center">
         <div class="card m-3" style="width: 18rem">
           <img
             class="card-img-top"
